@@ -1,4 +1,4 @@
 Reemlift
 ========
 
-a java text game
+a java game
