@@ -54,8 +54,8 @@ public class Menu implements ActionListener{
             buttonPane.add(btn);
         }
         frame.getContentPane().add(buttonPane, BorderLayout.WEST);
+        frame.revalidate();
         frame.repaint();
-//        frame.pack();
     }
     public void addOP(String s){
         ops.add(s);
@@ -70,8 +70,9 @@ public class Menu implements ActionListener{
             Runnable clear = new Runnable() {
                 @Override
                 public void run() {
-                  frame.getContentPane().remove(buttonPane);
-                  frame.repaint();
+                    frame.getContentPane().remove(buttonPane);
+                    frame.revalidate();
+                    frame.repaint();
                 }
               };
             worker.schedule(clear, 5, TimeUnit.MILLISECONDS);

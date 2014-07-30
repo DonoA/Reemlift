@@ -22,14 +22,14 @@ public class Reemlift {
     private static JFrame frame;
     private static Container fPain;
     private static void Setup(){
-        frame = new JFrame("Game5");
+        frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        JLabel emptyLabel = new JLabel("");
-//        emptyLabel.setPreferredSize(new Dimension(700, 450));
-//        fPain = frame.getContentPane();
-//        fPain.add(emptyLabel, BorderLayout.WEST);
-//        frame.pack();
-        frame.setSize(new Dimension(700, 450));
+        JLabel emptyLabel = new JLabel("");
+        emptyLabel.setPreferredSize(new Dimension(700, 450));
+        fPain = frame.getContentPane();
+        fPain.add(emptyLabel, BorderLayout.WEST);
+        frame.pack();
+//        frame.setSize(new Dimension(700, 450));
         frame.setVisible(true);
     }
     public static void main(String[] args) {
@@ -41,6 +41,7 @@ public class Reemlift {
                 event.setWillClose(true);
             }
         });
+        frame.pack();
         m1.show();
     }
 }
