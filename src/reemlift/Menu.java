@@ -41,13 +41,13 @@ public class Menu implements ActionListener{
         if(hasBack || ops.isEmpty()){
             this.ops.add("back");
         }
-        for(String s : ops){
+        for(String s : this.ops){
             JButton btn = new JButton(s);
             btn.addActionListener(this);
             btn.setActionCommand(s);
             btns.put(s, btn);
         }
-        
+        System.out.println(btns.keySet());
     }
     public void show(){
         for(JButton btn : btns.values()){
