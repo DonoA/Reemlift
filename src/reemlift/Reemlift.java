@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import reemlift.utils.Menu;
+import reemlift.utils.WaitBar;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Reemlift {
     private static JFrame frame;
     private static Container fPain;
     private static HashMap<String, Menu> menus = new HashMap<>();
+    private static WaitBar bar;
     private static void Setup(){
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +38,14 @@ public class Reemlift {
             @Override
             public void onOptionClick(Menu.OptionClickEvent event) {
                 if(event.getName().equalsIgnoreCase("kill")){
-                    menus.get("mn_kill").show();
+                    event.setWillClose(false);
+                    event.setWillDisable(true);
+                    bar.Start(new WaitBar.OptionClickEventHandler() {
+                        @Override
+                        public void onOptionClick(WaitBar.OptionClickEvent event) {
+                            menus.get("mn_kill").show();
+                        }
+                    });
                 }else{
                     menus.get("mn_live").show();
                 }
@@ -66,10 +76,12 @@ public class Reemlift {
                 event.setWillClose(true);
             }
         }));
+        bar = new WaitBar(frame);
     }
     public static void main(String[] args) {
         Setup();
         frame.pack();
         menus.get("main").show();
+        bar.Show(10, false);
     }
 }
