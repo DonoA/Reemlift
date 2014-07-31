@@ -9,10 +9,13 @@ package reemlift;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import reemlift.utils.DBmanager;
 import reemlift.utils.Menu;
 import reemlift.utils.WaitBar;
 
@@ -25,6 +28,7 @@ public class Reemlift {
     private static Container fPain;
     private static HashMap<String, Menu> menus = new HashMap<>();
     private static WaitBar bar;
+    public static Game main;
     private static void Setup(){
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,54 +38,55 @@ public class Reemlift {
         fPain.add(emptyLabel, BorderLayout.WEST);
         frame.pack();
         frame.setVisible(true);
-        menus.put("main", new Menu(Arrays.asList(new String[] {"kill" , "live"}), true, frame, new Menu.OptionClickEventHandler() {
+        Menu mhold = new Menu(frame, new Menu.OptionClickEventHandler() {
             @Override
             public void onOptionClick(Menu.OptionClickEvent event) {
-                if(event.getName().equalsIgnoreCase("kill")){
-                    event.setWillClose(false);
-                    event.setWillDisable(true);
-                    bar.Start(new WaitBar.OptionClickEventHandler() {
+                if(event.getName().equalsIgnoreCase("new game")){
+                    main = new Game(frame);
+                    main.Start();
+                }else if(event.getName().equalsIgnoreCase("load game")){
+                    Menu mhold = new Menu(frame, new Menu.OptionClickEventHandler() {
                         @Override
-                        public void onOptionClick(WaitBar.OptionClickEvent event) {
-                            menus.get("mn_kill").show();
+                        public void onOptionClick(Menu.OptionClickEvent event) {
+                            Game game = DBmanager.Load(event.getName()).asGame(frame);
+                            game.Start();
                         }
                     });
+                    int pos = 1;
+                    for(String s : DBmanager.getSaves()){
+                        mhold.addOP(pos, s, "Load save " + s);
+                        pos++;
+                    }
+                    mhold.show(BorderLayout.NORTH);
                 }else{
-                    menus.get("mn_live").show();
+                    WindowEvent wev = new WindowEvent(frame, WindowEvent.WINDOW_CLOSING);
+                    Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
                 }
-                event.setWillClose(true);
             }
-        }));
-        menus.put("mn_kill", new Menu(Arrays.asList(new String[] {"animal1" , "aminal2", "animal3" , "aminal4", "animal5" , "aminal6", "animal7" , "aminal8", "tttttttt1", "ttttttt2"}), true, frame, new Menu.OptionClickEventHandler() {
-            @Override
-            public void onOptionClick(Menu.OptionClickEvent event) {
-                if(event.getName().equalsIgnoreCase("animal1")){
-                    System.out.println("no1");
-                }else{
-                    System.out.println("no2");
-                }
-                menus.get("main").show();
-                event.setWillClose(true);
-            }
-        }));
-        menus.put("mn_live", new Menu(Arrays.asList(new String[] {"animal1" , "aminal2"}), true, frame, new Menu.OptionClickEventHandler() {
-            @Override
-            public void onOptionClick(Menu.OptionClickEvent event) {
-                if(event.getName().equalsIgnoreCase("animal1")){
-                    System.out.println("yes1");
-                }else{
-                    System.out.println("yes2");
-                }
-                menus.get("main").show();
-                event.setWillClose(true);
-            }
-        }));
+        })
+        .addOP(1, "New Game", "A fresh start")
+        .addOP(2, "Load Game", "Pick up where you left off")
+        .addOP(3, "Exit", "nooooo");
+        menus.put("main", mhold);
         bar = new WaitBar(frame);
     }
     public static void main(String[] args) {
         Setup();
         frame.pack();
-        menus.get("main").show();
-        bar.Show(10, false);
+        menus.get("main").show(BorderLayout.NORTH);
     }
 }
+
+
+//                if(event.getName().equalsIgnoreCase("kill")){
+//                    event.setWillClose(false);
+//                    event.setWillDisable(true);
+//                    bar.Start(new WaitBar.OptionClickEventHandler() {
+//                        @Override
+//                        public void onOptionClick(WaitBar.OptionClickEvent event) {
+//                            menus.get("mn_kill").show();
+//                        }
+//                    });
+//                }else{
+//                    menus.get("mn_live").show();
+//                }

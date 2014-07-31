@@ -7,22 +7,22 @@
 package reemlift.utils;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SpringLayout;
+import reemlift.Game;
 
 /**
  *
@@ -30,55 +30,55 @@ import javax.swing.SpringLayout;
  */
 public class Menu implements ActionListener{
     public List<String> ops = new ArrayList<String>();
-    public HashMap<String, JButton> btns = new HashMap<>();
+    public HashMap<Integer, JButton> btns = new HashMap<>();
     private OptionClickEventHandler handler;
     private static final ScheduledExecutorService worker = 
                          Executors.newSingleThreadScheduledExecutor();
     private JFrame frame;
-    private JPanel buttonPane = new JPanel(new GridLayout(2,3));
-    public Menu(List<String> ops, boolean hasBack, JFrame frame, OptionClickEventHandler handler){
+    private JPanel buttonPane = new JPanel();
+    public Menu(JFrame frame, OptionClickEventHandler handler){
+        buttonPane.setLayout(new GridBagLayout());
         this.handler = handler;
         this.frame = frame;
-        this.ops.addAll(ops);
-        if(hasBack || ops.isEmpty()){
-            this.ops.add("back");
-        }
-        for(String s : this.ops){
-            JButton btn = new JButton(s);
-            btn.addActionListener(this);
-            btn.setActionCommand(s);
-//            btn.setSize(new Dimension(100, 100));
-//            btn.setMinimumSize(new Dimension(100, 100));
-            btns.put(s, btn);
-        }
-//        System.out.println(btns.keySet());
     }
-    public void show(){
-        int col = 1;
-        int row = 1;
-        for(JButton btn : btns.values()){
-            buttonPane.removeAll();
-            buttonPane.add(btn);
-//            frame.getContentPane().add(buttonPane, BorderLayout.WEST);
+    public void show(String doc){
+        int pt = 0;
+        int pt2=0;
+        GridBagConstraints gbc = new GridBagConstraints();
+        for(int i : btns.keySet()){
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.gridx = pt2;
+            gbc.gridy = pt;
+            gbc.ipady = 10;
+            buttonPane.add(buttonPane.add(btns.get(i)), gbc);
+            if(pt == 11){
+                pt2++;
+                pt = 0;
+            }else{
+                pt++;
+            }
         }
-        frame.getContentPane().add(buttonPane, BorderLayout.NORTH);
-//        frame.getContentPane().add(buttonPane, BorderLayout.WEST);
+        frame.getContentPane().add(buttonPane, doc);
         frame.revalidate();
         frame.repaint();
     }
-    public void addOP(String s){
-        ops.add(s);
+    public Menu addOP(int pos, String name, String tip){
+        JButton btn = new JButton(name);
+        btn.addActionListener(this);
+        btn.setToolTipText(tip);
+        btn.setActionCommand(name);
+        btns.put(pos, btn);
+        return this;
     }
-    public void setEnabled(boolean enabled){
-        for(JButton btn : btns.values()){
-            buttonPane.removeAll();
-            buttonPane.add(btn);
-            frame.getContentPane().add(buttonPane, BorderLayout.AFTER_LAST_LINE);
-        }
-        frame.getContentPane().add(buttonPane, BorderLayout.WEST);
-        frame.revalidate();
-        frame.repaint();
-    }
+//    public void setEnabled(boolean enabled){
+//        for(){
+//            buttonPane.removeAll();
+//            buttonPane.add(btns.get(i));
+//        }
+//        frame.getContentPane().add(buttonPane, BorderLayout.PAGE_START);
+//        frame.revalidate();
+//        frame.repaint();
+//    }
     @Override
     public void actionPerformed(ActionEvent e){
         String name = e.getActionCommand();
@@ -92,9 +92,10 @@ public class Menu implements ActionListener{
                     frame.getContentPane().remove(buttonPane);
                     frame.revalidate();
                     frame.repaint();
-                }else if(event.willDisable()){
-                    setEnabled(false);
                 }
+//                else if(event.willDisable()){
+//                    setEnabled(false);
+//                }
             }
           };
         worker.schedule(clear, 5, TimeUnit.MILLISECONDS);
