@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 
-package reemlift.utils;
-
-import javax.swing.JTextArea;
+package reemlift.Game;
 
 /**
  *
  * @author Donovan
  */
-public class Console {
-    private JTextArea taskOutput;
+public class Room {
+    
 }

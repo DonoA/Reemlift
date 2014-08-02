@@ -6,6 +6,7 @@
 
 package reemlift;
 
+import reemlift.Game.Game;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import reemlift.utils.DBmanager;
+import reemlift.utils.Index;
 import reemlift.utils.Menu;
 import reemlift.utils.WaitBar;
 
@@ -30,6 +32,7 @@ public class Reemlift {
     private static WaitBar bar;
     public static Game main;
     private static void Setup(){
+        Index.Setup();
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel emptyLabel = new JLabel("");
@@ -51,7 +54,8 @@ public class Reemlift {
                             Game game = DBmanager.Load(event.getName()).asGame(frame);
                             game.Start();
                         }
-                    });
+                    })
+                    .SetTitle("Load Save");
                     int pos = 1;
                     for(String s : DBmanager.getSaves()){
                         mhold.addOP(pos, s, "Load save " + s);
@@ -66,7 +70,8 @@ public class Reemlift {
         })
         .addOP(1, "New Game", "A fresh start")
         .addOP(2, "Load Game", "Pick up where you left off")
-        .addOP(3, "Exit", "nooooo");
+        .addOP(3, "Exit", "nooooo")
+        .SetTitle("Main Menu");
         menus.put("main", mhold);
         bar = new WaitBar(frame);
     }

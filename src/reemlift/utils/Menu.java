@@ -21,8 +21,9 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import reemlift.Game;
+import reemlift.Game.Game;
 
 /**
  *
@@ -36,6 +37,7 @@ public class Menu implements ActionListener{
                          Executors.newSingleThreadScheduledExecutor();
     private JFrame frame;
     private JPanel buttonPane = new JPanel();
+    private JLabel title;
     public Menu(JFrame frame, OptionClickEventHandler handler){
         buttonPane.setLayout(new GridBagLayout());
         this.handler = handler;
@@ -45,8 +47,20 @@ public class Menu implements ActionListener{
         int pt = 0;
         int pt2=0;
         GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        if(title!=null){
+            gbc.gridx = pt2;
+            gbc.gridy = pt;
+            gbc.ipady = 10;
+            buttonPane.add(title);
+            if(pt == 11){
+                pt2++;
+                pt = 0;
+            }else{
+                pt++;
+            }
+        }
         for(int i : btns.keySet()){
-            gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.gridx = pt2;
             gbc.gridy = pt;
             gbc.ipady = 10;
@@ -61,6 +75,10 @@ public class Menu implements ActionListener{
         frame.getContentPane().add(buttonPane, doc);
         frame.revalidate();
         frame.repaint();
+    }
+    public Menu SetTitle(String ttl){
+        title = new JLabel(ttl);
+        return this;
     }
     public Menu addOP(int pos, String name, String tip){
         JButton btn = new JButton(name);

@@ -7,7 +7,7 @@
 package reemlift.utils;
 
 import javax.swing.JFrame;
-import reemlift.Game;
+import reemlift.Game.Game;
 
 /**
  *

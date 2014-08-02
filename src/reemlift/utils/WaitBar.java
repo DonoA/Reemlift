@@ -25,7 +25,7 @@ import javax.swing.SwingWorker;
 public class WaitBar {
     public int Time;
 //    public int currTime;
-    public boolean otherAllowed;
+    public boolean isFake;
     private JProgressBar Bar;
     private JFrame frame;
     private Task Dummy;
@@ -36,8 +36,8 @@ public class WaitBar {
         Bar.setValue(0);
         Bar.setStringPainted(true);
     }
-    public void Show(int Time, boolean otherAllowed){
-        this.otherAllowed = otherAllowed; 
+    public void Show(int Time, boolean isFake){
+        this.isFake = isFake; 
         this.Time = Time;
         frame.getContentPane().add(Bar, BorderLayout.SOUTH);
         frame.revalidate();
@@ -45,14 +45,17 @@ public class WaitBar {
     }
     public void Start(WaitBar.OptionClickEventHandler handler){
         this.handler = handler;
-        Dummy = new Task();
-        for(Component c : frame.getComponents()){
-            c.setEnabled(otherAllowed);
+        if(isFake){
+            Dummy = new Task();
+            Dummy.execute();
         }
-        Dummy.execute();
     }
-    
-    
+    public void setProg(int prog){
+        Bar.setValue(prog);
+    }
+    public void unload(){
+        frame.getContentPane().remove(Bar);
+    }
     class Task extends SwingWorker<Void, Void> {
         @Override
         public Void doInBackground() {
