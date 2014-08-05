@@ -15,6 +15,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 
@@ -36,14 +37,16 @@ public class WaitBar {
         Bar.setValue(0);
         Bar.setStringPainted(true);
     }
-    public void Show(int Time, boolean isFake){
+    public void Show(boolean isFake){
         this.isFake = isFake; 
-        this.Time = Time;
-        frame.getContentPane().add(Bar, BorderLayout.SOUTH);
+        JLayeredPane pane = new JLayeredPane();
+        pane.add(Bar, 2, 0);
+        frame.getContentPane().add(Bar, BorderLayout.PAGE_END);
         frame.revalidate();
         frame.repaint();
     }
-    public void Start(WaitBar.OptionClickEventHandler handler){
+    public void Start(int Time, WaitBar.OptionClickEventHandler handler){
+        this.Time = Time;
         this.handler = handler;
         if(isFake){
             Dummy = new Task();
