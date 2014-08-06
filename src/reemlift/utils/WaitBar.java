@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 
@@ -39,7 +40,7 @@ public class WaitBar {
     }
     public void Show(boolean isFake){
         this.isFake = isFake; 
-        JLayeredPane pane = new JLayeredPane();
+        JPanel pane = new JPanel();
         pane.add(Bar, 2, 0);
         frame.getContentPane().add(Bar, BorderLayout.PAGE_END);
         frame.revalidate();

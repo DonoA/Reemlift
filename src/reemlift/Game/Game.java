@@ -7,13 +7,16 @@
 package reemlift.Game;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Insets;
 import java.util.Arrays;
 import java.util.HashMap;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import reemlift.utils.Console;
@@ -116,7 +119,8 @@ public class Game {
     }
     public void Start(){
         bar.Show(true);
-        frame.add(new JScrollPane(consoleLog), BorderLayout.PAGE_END);
+        JScrollPane jcp = new JScrollPane(consoleLog);
+        frame.add(jcp, BorderLayout.PAGE_END);
         frame.revalidate();
         frame.repaint();
         consoleLog.setText("You wake up on your back surrounded by thick leaves and tall grasses. Your head hurts and you feel a bruses up your arm and onto your head. You are helpess and alone with only the cloths on your back and the shoes on your feet.");
