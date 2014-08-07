@@ -8,15 +8,8 @@ package reemlift.utils;
 
 
 import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingWorker;
 
@@ -24,29 +17,28 @@ import javax.swing.SwingWorker;
  *
  * @author Donovan
  */
-public class WaitBar {
+public class WaitBar extends JProgressBar{
     public int Time;
 //    public int currTime;
     public boolean isFake;
-    private JProgressBar Bar;
+//    private JProgressBar Bar;
     private JFrame frame;
     private Task Dummy;
     private WaitBar.OptionClickEventHandler handler;
     public WaitBar(JFrame frame){
+        super(0, 100);
+        setValue(0);
+        setStringPainted(true);
         this.frame = frame;
-        Bar = new JProgressBar(0, 100);
-        Bar.setValue(0);
-        Bar.setStringPainted(true);
     }
-    public void Show(boolean isFake){
+//    public void Show(boolean isFake){
+//        this.isFake = isFake; 
+//        frame.getContentPane().add(this, BorderLayout.PAGE_END);
+//        frame.revalidate();
+//        frame.repaint();
+//    }
+    public void Start(int Time, WaitBar.OptionClickEventHandler handler, boolean isFake){
         this.isFake = isFake; 
-        JPanel pane = new JPanel();
-        pane.add(Bar, 2, 0);
-        frame.getContentPane().add(Bar, BorderLayout.PAGE_END);
-        frame.revalidate();
-        frame.repaint();
-    }
-    public void Start(int Time, WaitBar.OptionClickEventHandler handler){
         this.Time = Time;
         this.handler = handler;
         if(isFake){
@@ -55,10 +47,10 @@ public class WaitBar {
         }
     }
     public void setProg(int prog){
-        Bar.setValue(prog);
+        setValue(prog);
     }
     public void unload(){
-        frame.getContentPane().remove(Bar);
+        frame.getContentPane().remove(this);
     }
     class Task extends SwingWorker<Void, Void> {
         @Override
@@ -71,7 +63,7 @@ public class WaitBar {
                 } catch (InterruptedException ignore) {}
                 progress += 1;
                 setProgress(Math.min(progress, 100));
-                Bar.setValue(progress);
+                setValue(progress);
             }
             return null;
         }

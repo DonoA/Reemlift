@@ -25,7 +25,7 @@ public class Console extends JTextArea{
     private boolean endCurrTask = false;
     public Console(int y, int x, boolean editable){
         super(y, x);
-        setMaximumSize(new Dimension(400, 100));
+//        setMaximumSize(new Dimension(10, 400));
         setEditable(editable);
         setLineWrap(true);
     }
