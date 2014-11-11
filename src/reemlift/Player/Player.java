@@ -17,37 +17,23 @@
  * 
  */
 
-package reemlift.Utils;
+package reemlift.Player;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import javax.swing.JPanel;
-import reemlift.SaveData.DBmanager;
+import java.io.File;
+import static reemlift.Reemlift.FileSep;
+import reemlift.Utils.Sprite;
+import reemlift.Reemlift;
 
 /**
  *
  * @author Donovan
  */
-public class GamePanel extends JPanel{
+public class Player extends Sprite{
     
-    public GamePanel(){
-        
-        addKeyListener(new ActionHandler());
-        setFocusable(true);
-        setBackground(Color.BLACK);
-        setDoubleBuffered(true);
+    public Player(){
+        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player.jpg");
     }
-    
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(DBmanager.player.getMask(), DBmanager.player.getX(), DBmanager.player.getY(), this);
+    public void Move(int Dir){
         
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
-//        repaint();
     }
 }

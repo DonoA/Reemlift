@@ -22,16 +22,43 @@ package reemlift.Utils;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author Donovan
  */
 public class ActionHandler extends KeyAdapter implements ActionListener{
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        System.out.println(key);
+//        if (key == KeyEvent.VK_LEFT) {
+//            dx = -1;
+//        }
+//
+//        if (key == KeyEvent.VK_RIGHT) {
+//            dx = 1;
+//        }
+//
+//        if (key == KeyEvent.VK_UP) {
+//            dy = -1;
+//        }
+//
+//        if (key == KeyEvent.VK_DOWN) {
+//            dy = 1;
+//        }
+    }
 
     @Override
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        System.out.println(key);
+    }
+    @Override
     public void actionPerformed(ActionEvent e) {
-        
+
     }
     
 }

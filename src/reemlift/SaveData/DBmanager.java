@@ -17,37 +17,16 @@
  * 
  */
 
-package reemlift.Utils;
+package reemlift.SaveData;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Toolkit;
-import javax.swing.JPanel;
-import reemlift.SaveData.DBmanager;
+import reemlift.Player.Player;
 
 /**
  *
  * @author Donovan
  */
-public class GamePanel extends JPanel{
+public class DBmanager {
     
-    public GamePanel(){
-        
-        addKeyListener(new ActionHandler());
-        setFocusable(true);
-        setBackground(Color.BLACK);
-        setDoubleBuffered(true);
-    }
+    public static Player player;
     
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(DBmanager.player.getMask(), DBmanager.player.getX(), DBmanager.player.getY(), this);
-        
-        Toolkit.getDefaultToolkit().sync();
-        g.dispose();
-//        repaint();
-    }
 }
