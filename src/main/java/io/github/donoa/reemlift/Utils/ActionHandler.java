@@ -17,7 +17,7 @@
  * 
  */
 
-package reemlift.Utils;
+package main.java.io.github.donoa.reemlift.Utils;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,9 +26,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
-import reemlift.Player.Player;
-import reemlift.Reemlift;
-import reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Reemlift;
+import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
 /**
  *

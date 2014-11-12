@@ -17,16 +17,12 @@
  * 
  */
 
-package reemlift.SaveData;
-
-import reemlift.Player.Player;
+package main.java.io.github.donoa.reemlift.Player;
 
 /**
  *
  * @author Donovan
  */
-public class DBmanager {
-    
-    public static Player player;
+public class Inventory {
     
 }

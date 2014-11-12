@@ -17,12 +17,16 @@
  * 
  */
 
-package reemlift.Utils.Level;
+package main.java.io.github.donoa.reemlift.SaveData;
+
+import main.java.io.github.donoa.reemlift.Player.Player;
 
 /**
  *
  * @author Donovan
  */
-public class Block {
+public class DBmanager {
+    
+    public static Player player;
     
 }

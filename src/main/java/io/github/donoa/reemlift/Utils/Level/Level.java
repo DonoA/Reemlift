@@ -17,7 +17,7 @@
  * 
  */
 
-package reemlift.Utils.Level;
+package main.java.io.github.donoa.reemlift.Utils.Level;
 
 /**
  *

@@ -17,7 +17,7 @@
  * 
  */
 
-package reemlift.Utils;
+package main.java.io.github.donoa.reemlift.Utils;
 
 import java.awt.Image;
 import java.awt.geom.AffineTransform;

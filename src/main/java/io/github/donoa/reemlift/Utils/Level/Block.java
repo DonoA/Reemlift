@@ -17,12 +17,12 @@
  * 
  */
 
-package reemlift.Player;
+package main.java.io.github.donoa.reemlift.Utils.Level;
 
 /**
  *
  * @author Donovan
  */
-public class Inventory {
+public class Block {
     
 }

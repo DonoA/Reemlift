@@ -17,7 +17,7 @@
  * 
  */
 
-package reemlift.Utils;
+package main.java.io.github.donoa.reemlift.Utils;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -27,7 +27,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
-import reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
 /**
  *

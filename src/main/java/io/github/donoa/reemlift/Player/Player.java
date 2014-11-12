@@ -17,15 +17,15 @@
  * 
  */
 
-package reemlift.Player;
+package main.java.io.github.donoa.reemlift.Player;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import reemlift.Reemlift;
-import static reemlift.Reemlift.FileSep;
-import reemlift.Utils.Sprite;
+import main.java.io.github.donoa.reemlift.Reemlift;
+import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
+import main.java.io.github.donoa.reemlift.Utils.Sprite;
 
 /**
  *

@@ -4,19 +4,14 @@
  * and open the template in the editor.
  */
 
-package reemlift;
+package main.java.io.github.donoa.reemlift;
 
-import java.awt.Dimension;
-import java.io.File;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
-import reemlift.Player.Player;
-import reemlift.SaveData.DBmanager;
-import reemlift.Utils.GamePanel;
+import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.Utils.GamePanel;
 
 
 /**
@@ -35,10 +30,10 @@ public class Reemlift {
     
     private static void Setup(){
         Source = ClassLoader.getSystemClassLoader().getResource(".").getPath();
-        System.out.println(Source);
+//        System.out.println(Source);
         Source = Source.replace("/", FileSep);
         Source = Source.substring(1, Source.length());
-        Source += "reemlift" + FileSep;
+        Source += "main" + FileSep + "java" + FileSep + "io" + FileSep + "github" + FileSep + "donoa" + FileSep + "reemlift" + FileSep;
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
