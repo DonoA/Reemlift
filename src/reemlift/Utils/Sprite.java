@@ -20,12 +20,12 @@
 package reemlift.Utils;
 
 import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import static reemlift.Reemlift.FileSep;
 
 /**
  *
@@ -41,14 +41,19 @@ public class Sprite {
     
     private String src;
     
+    private int Dir;
+    
+    private AffineTransformOp TransOp;
+    
+    private BufferedImage BuffMask;
     
     public Sprite(int x, int y, String mask){
         this.X = x;
         this.Y = y;
         this.src = mask;
+        
         try {
-            BufferedImage img = ImageIO.read(new File(src));
-            this.mask = img.getScaledInstance(img.getHeight(), img.getWidth(), 0);
+            this.mask = ImageIO.read(new File(src));
         } catch (IOException e) {
         }
     }
@@ -57,8 +62,18 @@ public class Sprite {
     public void setY(int y){this.Y = y;}
     public void setX(int x){this.X = x;}
     public Image getMask(){return mask;}
-    public void reloadMask(){this.mask = new ImageIcon(src).getImage();}
+    public void reloadMask(){try {
+            this.mask = ImageIO.read(new File(src));
+        } catch (IOException e) {
+        }}
     protected void setMask(Image mask){this.mask = mask;}
     public void setSrc(String src){this.src = src;}
-    
+    public void setDir(int Dir){
+        if(this.Dir != Dir){
+            AffineTransform tx = AffineTransform.getRotateInstance(Dir*90, X, Y);
+            TransOp = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+        }
+    }
+    public AffineTransformOp getTransOp(){return TransOp;}
+    public BufferedImage getBuffMask(){return BuffMask;}
 }
