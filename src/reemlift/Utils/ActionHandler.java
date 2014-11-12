@@ -28,7 +28,7 @@ import java.awt.event.KeyEvent;
  *
  * @author Donovan
  */
-public class ActionHandler extends KeyAdapter implements ActionListener{
+public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     
     @Override
     public void keyReleased(KeyEvent e) {
@@ -56,9 +56,9 @@ public class ActionHandler extends KeyAdapter implements ActionListener{
         int key = e.getKeyCode();
         System.out.println(key);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//
+//    }
     
 }
