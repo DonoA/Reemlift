@@ -19,21 +19,53 @@
 
 package reemlift.Player;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
-import static reemlift.Reemlift.FileSep;
-import reemlift.Utils.Sprite;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import reemlift.Reemlift;
+import static reemlift.Reemlift.FileSep;
+import reemlift.Utils.ActionHandler;
+import reemlift.Utils.Sprite;
 
 /**
  *
  * @author Donovan
  */
 public class Player extends Sprite{
-    
+    private Image maskUp;
+    private Image maskRight;
+    private Image maskLeft;
+    private Image maskDown;
     public Player(){
         super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player.jpg");
+        try {
+            BufferedImage img = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Up.jpg"));
+            maskUp = img.getScaledInstance(img.getHeight(), img.getWidth(), 0);
+            img = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Right.jpg"));
+            maskRight = img.getScaledInstance(img.getHeight(), img.getWidth(), 0);
+            img = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Down.jpg"));
+            maskDown = img.getScaledInstance(img.getHeight(), img.getWidth(), 0);
+            img = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Left.jpg"));
+            maskLeft = img.getScaledInstance(img.getHeight(), img.getWidth(), 0);
+        } catch (IOException e) {
+        }
     }
-    public void Move(int Dir){
-        
+    public void Move(String Dir){
+        if(Dir.equals("w")){
+            setY(getY()-2);
+            super.setMask(maskUp);
+        }else if(Dir.equals("a")){
+            setX(getX()-2);
+            super.setMask(maskLeft);
+        }else if(Dir.equals("s")){
+            setY(getY()+2);
+            super.setMask(maskDown);
+        }else if(Dir.equals("d")){
+            setX(getX()+2);
+            super.setMask(maskRight);
+        }
+        Reemlift.gameFrame.repaint();
     }
 }

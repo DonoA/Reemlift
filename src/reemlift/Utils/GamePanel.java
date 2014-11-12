@@ -23,7 +23,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import reemlift.SaveData.DBmanager;
 
 /**
@@ -33,7 +36,24 @@ import reemlift.SaveData.DBmanager;
 public class GamePanel extends JPanel{
     
     public GamePanel(){
+        getActionMap().put("MovePressW", ActionHandler.MOVEPRESSW);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "MovePressW");
+        getActionMap().put("MovePressA", ActionHandler.MOVEPRESSA);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "MovePressA");
+        getActionMap().put("MovePressS", ActionHandler.MOVEPRESSS);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "MovePressS");
+        getActionMap().put("MovePressD", ActionHandler.MOVEPRESSD);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "MovePressD");
         
+        getActionMap().put("MoveReleaseW", ActionHandler.MOVERELEASEW);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "MoveReleaseW");
+        getActionMap().put("MoveReleaseA", ActionHandler.MOVERELEASEA);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "MoveReleaseA");
+        getActionMap().put("MoveReleaseS", ActionHandler.MOVERELEASES);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "MoveReleaseS");
+        getActionMap().put("MoveReleaseD", ActionHandler.MOVERELEASED);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "MoveReleaseD");
+
         addKeyListener(new ActionHandler());
         setFocusable(true);
         setBackground(Color.BLACK);

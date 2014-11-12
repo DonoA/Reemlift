@@ -54,8 +54,11 @@ public class Sprite {
     }
     public int getX(){return X;}
     public int getY(){return Y;}
+    public void setY(int y){this.Y = y;}
+    public void setX(int x){this.X = x;}
     public Image getMask(){return mask;}
     public void reloadMask(){this.mask = new ImageIcon(src).getImage();}
+    protected void setMask(Image mask){this.mask = mask;}
     public void setSrc(String src){this.src = src;}
     
 }

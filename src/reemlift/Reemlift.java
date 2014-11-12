@@ -24,8 +24,8 @@ import reemlift.Utils.GamePanel;
  * @author Donovan
  */
 public class Reemlift {
-    private static JFrame frame;
-    private static GamePanel gameFrame;
+    public static JFrame frame;
+    public static GamePanel gameFrame;
     
     public static String FileSep = System.getProperty("file.separator");
     
