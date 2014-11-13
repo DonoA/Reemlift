@@ -37,27 +37,27 @@ public class Player extends Sprite{
     private BufferedImage maskLeft;
     private BufferedImage maskDown;
     public Player(){
-        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player.jpg");
+        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg");
         try {
-            maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Up.jpg"));
-            maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Right.jpg"));
-            maskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Down.jpg"));
-            maskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player-Left.jpg"));
+            maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg"));
+            maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Right.jpg"));
+            maskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Down.jpg"));
+            maskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Left.jpg"));
         } catch (IOException e) {
         }
     }
     public void Move(String Dir){
         if(Dir.equals("w")){
-            setY(getY()-2);
+            setY(getY()-1);
             super.setMask(maskUp);
         }else if(Dir.equals("a")){
-            setX(getX()-2);
+            setX(getX()-1);
             super.setMask(maskLeft);
         }else if(Dir.equals("s")){
-            setY(getY()+2);
+            setY(getY()+1);
             super.setMask(maskDown);
         }else if(Dir.equals("d")){
-            setX(getX()+2);
+            setX(getX()+1);
             super.setMask(maskRight);
         }
         Reemlift.gameFrame.repaint();

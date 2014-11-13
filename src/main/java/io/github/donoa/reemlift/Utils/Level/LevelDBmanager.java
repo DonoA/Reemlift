@@ -19,13 +19,17 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Donovan
  */
-public class Level {
-    private Block[][] Blocks;
+public class LevelDBmanager {
     
+    public static Level CurrLevel;
     
-    
+    public static void LoadLevel(String Level){
+        
+    }
 }

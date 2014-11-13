@@ -19,10 +19,39 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
+import main.java.io.github.donoa.reemlift.Reemlift;
+import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
+import main.java.io.github.donoa.reemlift.Utils.Sprite;
+
 /**
  *
  * @author Donovan
  */
-public class Block {
+public enum Block{
+    WALL(0, true, "Wall.jpg"),
+    FLOOR(1, false, "Floor.jpg"),
+    BLACK(2, true, "Black.jpg");
     
+    private int id;
+    
+    private boolean solid;
+    
+    private String src;
+    
+    private Sprite sprite;
+    
+    private int X;
+    
+    private int Y;
+    
+    private Block(int id, boolean solid, String src) {
+        this.id = id;
+        this.solid = solid;
+        this.src = Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + src;
+        
+    }
+    public void setLoc(int x, int y){
+        this.Y = y;
+        this.X = x;
+    }
 }
