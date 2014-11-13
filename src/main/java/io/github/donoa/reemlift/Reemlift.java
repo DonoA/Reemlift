@@ -6,10 +6,13 @@
 
 package main.java.io.github.donoa.reemlift;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.swing.JFrame;
 import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Player.Shot;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 import main.java.io.github.donoa.reemlift.Utils.GamePanel;
 
@@ -28,9 +31,20 @@ public class Reemlift {
     
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     
+    public static final int TICKTIME = 25;
+    
+    private static Runnable MainTick = new Runnable(){
+
+        @Override
+        public void run() {
+            for(Shot s:DBmanager.MovingShots)
+                s.Update();
+            
+        }
+    };
+    
     private static void Setup(){
         Source = ClassLoader.getSystemClassLoader().getResource(".").getPath();
-//        System.out.println(Source);
         Source = Source.replace("/", FileSep);
         Source = Source.substring(1, Source.length());
         Source += "main" + FileSep + "java" + FileSep + "io" + FileSep + "github" + FileSep + "donoa" + FileSep + "reemlift" + FileSep;
@@ -45,5 +59,7 @@ public class Reemlift {
         frame.add(gameFrame);
         frame.setSize(500, 400);
         gameFrame.repaint();
+        
+        
     }
 }

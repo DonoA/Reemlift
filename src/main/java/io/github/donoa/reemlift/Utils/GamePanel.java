@@ -53,6 +53,9 @@ public class GamePanel extends JPanel{
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "MoveReleaseS");
         getActionMap().put("MoveReleaseD", ActionHandler.MOVERELEASED);
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "MoveReleaseD");
+        
+        getActionMap().put("FireTap", ActionHandler.FIRETAP);
+        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "FireTap");
 
         addKeyListener(new ActionHandler());
         setFocusable(true);

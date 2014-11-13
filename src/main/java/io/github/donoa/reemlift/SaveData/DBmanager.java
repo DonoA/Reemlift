@@ -19,7 +19,9 @@
 
 package main.java.io.github.donoa.reemlift.SaveData;
 
+import java.util.ArrayList;
 import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Player.Shot;
 
 /**
  *
@@ -28,5 +30,7 @@ import main.java.io.github.donoa.reemlift.Player.Player;
 public class DBmanager {
     
     public static Player player;
+    
+    public static ArrayList<Shot> MovingShots = new ArrayList<>();
     
 }

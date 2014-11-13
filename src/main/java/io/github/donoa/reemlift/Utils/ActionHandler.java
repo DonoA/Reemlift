@@ -27,6 +27,7 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
 import main.java.io.github.donoa.reemlift.Player.Player;
+import static main.java.io.github.donoa.reemlift.Reemlift.TICKTIME;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
 /**
@@ -35,7 +36,6 @@ import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
  */
 public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Player p;
-    private static final int TICKTIME = 25;
     private static ActionEvent e;
     private static final Timer timer1 = new Timer(TICKTIME, new ActionListener() {
                 @Override
@@ -52,7 +52,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                         p.Move(e.getActionCommand());
                     }
                 }
-            });;;
+            });
     private static final Timer timer3 = new Timer(TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -158,6 +158,21 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 }
             }
         };
+    /////Fire
+    ////Tap
+    ///Here
+    
+//    private Timer FireCool = new Timer();
+    private boolean cooling = false;
+    
+    public static Action FIRETAP = new AbstractAction("FireTap"){
+        @Override
+        public void actionPerformed(ActionEvent ev){
+                System.out.println("Fire");
+            }
+            
+        };
+    
     
     @Override
     public void keyReleased(KeyEvent e) {
