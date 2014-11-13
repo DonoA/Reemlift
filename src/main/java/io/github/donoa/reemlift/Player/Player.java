@@ -36,6 +36,8 @@ public class Player extends Sprite{
     private BufferedImage maskRight;
     private BufferedImage maskLeft;
     private BufferedImage maskDown;
+    
+    private int speed = 3;
     public Player(){
         super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg");
         try {
@@ -48,16 +50,16 @@ public class Player extends Sprite{
     }
     public void Move(String Dir){
         if(Dir.equals("w")){
-            setY(getY()-1);
+            setY(getY()-speed);
             super.setMask(maskUp);
         }else if(Dir.equals("a")){
-            setX(getX()-1);
+            setX(getX()-speed);
             super.setMask(maskLeft);
         }else if(Dir.equals("s")){
-            setY(getY()+1);
+            setY(getY()+speed);
             super.setMask(maskDown);
         }else if(Dir.equals("d")){
-            setX(getX()+1);
+            setX(getX()+speed);
             super.setMask(maskRight);
         }
         Reemlift.gameFrame.repaint();

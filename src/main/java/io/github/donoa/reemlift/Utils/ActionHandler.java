@@ -27,7 +27,6 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
 import main.java.io.github.donoa.reemlift.Player.Player;
-import main.java.io.github.donoa.reemlift.Reemlift;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
 /**
@@ -36,12 +35,43 @@ import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
  */
 public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Player p;
+    private static final int TICKTIME = 25;
     private static ActionEvent e;
-    private static Timer timer1;
-    private static Timer timer2;
-    private static Timer timer3;
-    private static Timer timer4;
+    private static final Timer timer1 = new Timer(TICKTIME, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    if(isDown){
+                        p.Move(e.getActionCommand());
+                    }
+                }
+            });;;
+    private static final Timer timer2 = new Timer(TICKTIME, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    if(isDown){
+                        p.Move(e.getActionCommand());
+                    }
+                }
+            });;;
+    private static final Timer timer3 = new Timer(TICKTIME, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    if(isDown){
+                        p.Move(e.getActionCommand());
+                    }
+                }
+            });;;
+    private static final Timer timer4 = new Timer(TICKTIME, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    if(isDown){
+                        p.Move(e.getActionCommand());
+                    }
+                }
+            });;
     private static boolean isDown = false;
+    
+    
     //////Press
     /////Events
     ////Here
@@ -51,15 +81,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                timer1 = new Timer(200, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    if(isDown){
-                        p.Move(e.getActionCommand());
-                    }
-                }
-            });
-            timer1.start();
+                timer1.start();
             }
         };
     
@@ -69,15 +91,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                timer2 = new Timer(200, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    if(isDown){
-                        p.Move(e.getActionCommand());
-                    }
-                }
-            });
-            timer2.start();
+                
+                timer2.start();
             }
         };
     
@@ -87,15 +102,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                timer3 = new Timer(200, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    if(isDown){
-                        p.Move(e.getActionCommand());
-                    }
-                }
-            });
-            timer3.start();
+                
+                timer3.start();
             }
         };
     
@@ -105,15 +113,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                timer4 = new Timer(200, new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    if(isDown){
-                        p.Move(e.getActionCommand());
-                    }
-                }
-            });
-            timer4.start();
+                timer4.start();
             }
         };
     /////Key
@@ -124,7 +124,6 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
                     timer1.stop();
-                    timer1 = null;
                     isDown = false;
                 }
             }
@@ -135,7 +134,6 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
                     timer2.stop();
-                    timer2 = null;
                     isDown = false;
                 }
             }
@@ -146,7 +144,6 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
                     timer3.stop();
-                    timer3 = null;
                     isDown = false;
                 }
             }
@@ -157,7 +154,6 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
                     timer4.stop();
-                    timer4 = null;
                     isDown = false;
                 }
             }
