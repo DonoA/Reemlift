@@ -54,6 +54,7 @@ public class Sprite {
         
         try {
             this.mask = ImageIO.read(new File(src));
+            this.BuffMask = ImageIO.read(new File(src));
         } catch (IOException e) {
         }
     }

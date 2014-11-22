@@ -202,14 +202,14 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     
     @Override
     public void keyReleased(KeyEvent e) {
-        int key = e.getKeyCode();
-        System.out.println(key + ": thing");
+//        int key = e.getKeyCode();
+//        System.out.println(key + ": thing");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int key = e.getKeyCode();
-        System.out.println(key + ": thing");
+//        int key = e.getKeyCode();
+//        System.out.println(key + ": thing");
     }
 //    @Override
 //    public void actionPerformed(ActionEvent e) {

@@ -46,25 +46,25 @@ public class Shot extends Sprite{
         this.Dir = Dir;
         if(this.Dir == 0){
             try {
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.jpg")));
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 1){
             try {
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.jpg")));
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 2){
             try {
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.jpg")));
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 3){
             try {
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.jpg")));
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }

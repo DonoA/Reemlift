@@ -19,6 +19,8 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
+import java.awt.Rectangle;
+
 /**
  *
  * @author Donovan
@@ -32,4 +34,16 @@ public class LevelClass {
     }
     
     public Block[][] getBlocks(){return Blocks;}
+    
+    public boolean HasHit(Rectangle HitBox){
+        int x = HitBox.x/10;
+        int y = HitBox.y/10;
+        Block b = Blocks[x][y];
+        if(b.isSolid()){
+            System.out.println();
+            return b.HitBox.intersects(HitBox);
+        }else{
+            return false;
+        }
+    }
 }

@@ -19,6 +19,7 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -34,26 +35,36 @@ import main.java.io.github.donoa.reemlift.Utils.Sprite;
  */
 public class Block extends Sprite{
     
+    private boolean Solid;
+    
+    protected Rectangle HitBox;
+    
     public Block(int X, int Y, int ID){
-        super(X,Y, "");
+        super(X,Y, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Wall.jpg");
         if(ID == 0){try {
             //Wall
             super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Wall.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Solid = true;
         }else if(ID == 1){try {
             //Floor
             super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Floor.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Solid = false;
         }else if(ID == 2){try {
             //Void
             super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Void.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Solid = true;
         }
+        HitBox = new Rectangle(X*10,Y*10,10,10);
     }
+    
+    public boolean isSolid(){return this.Solid;}
 }

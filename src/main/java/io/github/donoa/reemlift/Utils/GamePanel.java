@@ -30,12 +30,9 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import main.java.io.github.donoa.reemlift.Player.Player;
-import main.java.io.github.donoa.reemlift.Player.Shot;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 import main.java.io.github.donoa.reemlift.Utils.Level.LevelDBmanager;
-import main.java.io.github.donoa.reemlift.Utils.Level.Block;
-import main.java.io.github.donoa.reemlift.Utils.Level.LevelClass;
 
 /**
  *
@@ -74,14 +71,7 @@ public class GamePanel extends JPanel{
         setDoubleBuffered(true);
         
         Reemlift.MainLoop.start();
-        Block[][] blox = {{new Block(0, 0, 0), 
-                            new Block(1, 0, 1), 
-                            new Block(2, 0, 0), 
-                            new Block(3, 0, 0), 
-                            new Block(4, 0, 0), 
-                            new Block(5, 0, 0), 
-                            new Block(6, 0, 0)}, {new Block(0, 1, 1)}};
-        LevelDBmanager.CurrLevel = new LevelClass(blox);
+        LevelDBmanager.LoadLevel("2");
     }
     
     @Override

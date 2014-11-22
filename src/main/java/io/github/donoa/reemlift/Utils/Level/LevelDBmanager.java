@@ -20,8 +20,16 @@
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
 import java.awt.Graphics2D;
-import java.util.HashMap;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.java.io.github.donoa.reemlift.Reemlift;
+import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
 
 /**
  *
@@ -32,6 +40,33 @@ public class LevelDBmanager {
     public static LevelClass CurrLevel;
     
     public static void LoadLevel(String Level){
+        File save = new File(Reemlift.Source + "Resources" + FileSep + "Levels" + FileSep + Level + ".level");
+        try {
+            Scanner in = new Scanner(save);
+            int maxX = 0;
+            List<List<String>> BlokIdArray = new ArrayList<>();
+            while(in.hasNext()){
+                String line = in.nextLine();
+                List<String> hold = Arrays.asList(line.split("\\s*,\\s*"));
+                BlokIdArray.add(hold);
+                if(hold.size()>maxX){
+                    maxX = hold.size();
+                    
+                }
+            }
+            
+            Block[][] blox = new Block[maxX][BlokIdArray.size()];
+            System.out.print("Loading Level:  ");
+            for(int y = 0; y<BlokIdArray.size(); y++){
+                System.out.print("#");
+                for(int x = 0; x<BlokIdArray.get(y).size(); x++){
+                    blox[x][y] = new Block(x,y, Integer.parseInt(BlokIdArray.get(y).get(x)));
+                }
+            }
+            CurrLevel = new LevelClass(blox);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LevelDBmanager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         
     }
     

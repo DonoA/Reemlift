@@ -19,12 +19,15 @@
 
 package main.java.io.github.donoa.reemlift.Player;
 
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
+import main.java.io.github.donoa.reemlift.Utils.Level.LevelDBmanager;
 import main.java.io.github.donoa.reemlift.Utils.Sprite;
 
 /**
@@ -39,41 +42,52 @@ public class Player extends Sprite{
     
     private final int ROF = 1000/5;
     
+    private Rectangle HitBox;
+    
     private final int speed = 3;
     public Player(){
-        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg");
+        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png");
+        HitBox = new Rectangle(40, 60, super.getBuffMask().getWidth(), super.getBuffMask().getHeight());
         try {
-            maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg"));
-            maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Right.jpg"));
-            maskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Down.jpg"));
-            maskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Left.jpg"));
+            maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png"));
+            maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Right.png"));
+            maskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Down.png"));
+            maskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Left.png"));
         } catch (IOException e) {
         }
     }
     public void Move(String Dir){
         if(Dir.equals("w")){
-            setY(getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, HitBox.width, HitBox.height)))
+                setY(getY()-speed);
             super.setMask(maskUp);
             super.setDir(0);
             super.setBuffMask(maskUp);
         }else if(Dir.equals("a")){
-            setX(getX()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), HitBox.width, HitBox.height)))
+                setX(getX()-speed);
             super.setMask(maskLeft);
             super.setDir(3);
             super.setBuffMask(maskLeft);
         }else if(Dir.equals("s")){
-            setY(getY()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, HitBox.width, HitBox.height)))
+                setY(getY()+speed);
             super.setMask(maskDown);
             super.setDir(2);
             super.setBuffMask(maskDown);
         }else if(Dir.equals("d")){
-            setX(getX()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), HitBox.width, HitBox.height)))
+                setX(getX()+speed);
             super.setMask(maskRight);
             super.setDir(1);
             super.setBuffMask(maskRight);
         }
         Reemlift.gameFrame.repaint();
     }
-    
+//    
+//    private void reCalcHitBox(){
+//        HitBox = new Rectangle(new Dimension(BuffMask.getWidth(), BuffMask.getHeight()));
+//    }
+//    
     public int getROF(){return this.ROF;}
 }
