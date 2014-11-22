@@ -46,7 +46,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                         p.Move(e.getActionCommand());
                     }
                 }
-            });;;
+            });
     private static final Timer timer2 = new Timer(TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -62,7 +62,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                         p.Move(e.getActionCommand());
                     }
                 }
-            });;;
+            });
     private static final Timer timer4 = new Timer(TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -70,7 +70,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                         p.Move(e.getActionCommand());
                     }
                 }
-            });;
+            });
     private static boolean isDown = false;
     
     
@@ -174,7 +174,6 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     ////Tap
     ///Here
     
-//    private Timer FireCool = new Timer();
     private static boolean cooling = false;
     
     private static final Timer FireTimer = new Timer(DBmanager.player.getROF(), new ActionListener() {

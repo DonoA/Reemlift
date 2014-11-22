@@ -24,12 +24,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Player.Shot;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.Utils.Level.LevelDBmanager;
+import main.java.io.github.donoa.reemlift.Utils.Level.Block;
+import main.java.io.github.donoa.reemlift.Utils.Level.LevelClass;
 
 /**
  *
@@ -68,13 +74,25 @@ public class GamePanel extends JPanel{
         setDoubleBuffered(true);
         
         Reemlift.MainLoop.start();
-        
+        Block[][] blox = {{new Block(0, 0, 0), 
+                            new Block(1, 0, 1), 
+                            new Block(2, 0, 0), 
+                            new Block(3, 0, 0), 
+                            new Block(4, 0, 0), 
+                            new Block(5, 0, 0), 
+                            new Block(6, 0, 0)}, {new Block(0, 1, 1)}};
+        LevelDBmanager.CurrLevel = new LevelClass(blox);
     }
     
     @Override
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
+        
+        if(!LevelDBmanager.DrawLevel(g2d)){
+            Logger.getLogger(LevelDBmanager.class.getName()).log(Level.SEVERE, null, "Err");
+        }
+        
         if(!DBmanager.ForRender.isEmpty()){
             for(Sprite s : DBmanager.ForRender){
                 g2d.drawImage(s.getMask(), s.getX(), s.getY(), this);

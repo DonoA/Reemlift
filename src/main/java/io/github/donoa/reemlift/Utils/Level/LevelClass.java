@@ -19,30 +19,17 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
-import java.awt.Graphics2D;
-import java.util.HashMap;
-import main.java.io.github.donoa.reemlift.Reemlift;
-
 /**
  *
  * @author Donovan
  */
-public class LevelDBmanager {
+public class LevelClass {
+    private Block[][] Blocks;
     
-    public static LevelClass CurrLevel;
-    
-    public static void LoadLevel(String Level){
-        
+//    public Level(int i){}
+    public LevelClass(Block[][] blocks){
+        Blocks = blocks;
     }
     
-    public static boolean DrawLevel(Graphics2D g2d){
-        int X = CurrLevel.getBlocks().length;
-        for(int x=0; x<X; x++){
-            int Y = CurrLevel.getBlocks()[x].length;
-            for(int y=0; y<Y; y++){
-                g2d.drawImage(CurrLevel.getBlocks()[x][y].getMask(), x*10, y*10, Reemlift.gameFrame);
-            }
-        }
-        return true;
-    }
+    public Block[][] getBlocks(){return Blocks;}
 }

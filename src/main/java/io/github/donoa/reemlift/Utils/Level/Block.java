@@ -19,6 +19,11 @@
 
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
 import main.java.io.github.donoa.reemlift.Utils.Sprite;
@@ -27,31 +32,28 @@ import main.java.io.github.donoa.reemlift.Utils.Sprite;
  *
  * @author Donovan
  */
-public enum Block{
-    WALL(0, true, "Wall.jpg"),
-    FLOOR(1, false, "Floor.jpg"),
-    BLACK(2, true, "Black.jpg");
+public class Block extends Sprite{
     
-    private int id;
-    
-    private boolean solid;
-    
-    private String src;
-    
-    private Sprite sprite;
-    
-    private int X;
-    
-    private int Y;
-    
-    private Block(int id, boolean solid, String src) {
-        this.id = id;
-        this.solid = solid;
-        this.src = Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + src;
-        
-    }
-    public void setLoc(int x, int y){
-        this.Y = y;
-        this.X = x;
+    public Block(int X, int Y, int ID){
+        super(X,Y, "");
+        if(ID == 0){try {
+            //Wall
+            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Wall.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(ID == 1){try {
+            //Floor
+            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Floor.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(ID == 2){try {
+            //Void
+            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Void.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }
