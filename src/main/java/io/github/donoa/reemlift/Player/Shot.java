@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
+import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 import main.java.io.github.donoa.reemlift.Utils.Sprite;
 
 /**
@@ -36,25 +37,53 @@ import main.java.io.github.donoa.reemlift.Utils.Sprite;
 public class Shot extends Sprite{
     private int Dir;
     
-    private static BufferedImage MaskUp;
-    private static BufferedImage MaskDown;
-    private static BufferedImage MaskRight;
-    private static BufferedImage MaskLeft;
+    private int speed = 5;
+    
+    public boolean dead = false;
+    
     public Shot(int X, int Y, int Dir){
         super(X, Y, "");
         this.Dir = Dir;
-        try {
-            MaskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.jpg"));
-            MaskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.jpg"));
-            MaskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.jpg"));
-            MaskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.jpg"));
-        } catch (IOException ex) {
-            Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
+        if(this.Dir == 0){
+            try {
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(this.Dir == 1){
+            try {
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(this.Dir == 2){
+            try {
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else if(this.Dir == 3){
+            try {
+                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.jpg")));
+            } catch (IOException ex) {
+                Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-    
     public void Update(){
-        
+        if(Dir == 0){
+            setY(getY()-speed);
+        }else if(Dir == 3){
+            setX(getX()-speed);
+        }else if(Dir == 2){
+            setY(getY()+speed);
+        }else if(Dir == 1){
+            setX(getX()+speed);
+        }
+        if(getX()<0 || getY()<0 || getY()>Reemlift.frame.getHeight() || getX()>Reemlift.frame.getWidth()){
+            System.out.println("Removed Shot - " + DBmanager.MovingShots.size());
+            dead = true;
+        }
     }
     
 }

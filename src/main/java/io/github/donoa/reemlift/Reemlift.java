@@ -6,11 +6,16 @@
 
 package main.java.io.github.donoa.reemlift;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 import main.java.io.github.donoa.reemlift.Player.Player;
 import main.java.io.github.donoa.reemlift.Player.Shot;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
@@ -33,13 +38,29 @@ public class Reemlift {
     
     public static final int TICKTIME = 25;
     
-    private static Runnable MainTick = new Runnable(){
+    public final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    Reemlift.MainTick.run();
+                }
+            });
+    
+    private final static Runnable MainTick = new Runnable(){
 
         @Override
         public void run() {
-            for(Shot s:DBmanager.MovingShots)
-                s.Update();
+            if(!DBmanager.MovingShots.isEmpty()){
+                for(Shot s:DBmanager.MovingShots){
+                    if(!s.dead){
+                        s.Update();
+                    }else{
+                        DBmanager.ForRender.remove(s);
+//                        DBmanager.MovingShots.remove(s);
+                    }
+                }
+            }
             
+            frame.repaint();
         }
     };
     
@@ -51,15 +72,47 @@ public class Reemlift {
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        gameFrame = new GamePanel();
-        DBmanager.player = new Player();
+        frame.setSize(300, 200);
+    }
+    private static void MainMenu(){
+        final JPanel btnp = new JPanel();
+        btnp.setBackground(Color.BLUE);
+//        GridBagConstraints gbc = new GridBagConstraints();
+//        gbc.fill = GridBagConstraints.HORIZONTAL;
+        JButton Hbtn = new JButton("New Game");
+        Hbtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    frame.remove(btnp);
+                    gameFrame = new GamePanel();
+                    DBmanager.ForRender.add(DBmanager.player);
+                    frame.add(gameFrame);
+                    gameFrame.repaint();
+                    frame.setSize(500, 400);
+                }
+            });
+        btnp.add(Hbtn);
+        Hbtn = new JButton("Load Game");
+        Hbtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    JPanel btnpLoad = new JPanel();
+                    //menu of saves
+                }
+            });
+        btnp.add(Hbtn);
+        Hbtn = new JButton("Quit Game");
+        Hbtn.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    frame.dispose();
+                }
+            });
+        btnp.add(Hbtn);
+        frame.add(btnp, BorderLayout.CENTER);
     }
     public static void main(String[] args) {
         Setup();
-        frame.add(gameFrame);
-        frame.setSize(500, 400);
-        gameFrame.repaint();
-        
-        
+        MainMenu();
     }
 }

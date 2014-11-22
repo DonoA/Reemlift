@@ -69,11 +69,14 @@ public class Sprite {
     protected void setMask(Image mask){this.mask = mask;}
     public void setSrc(String src){this.src = src;}
     public void setDir(int Dir){
-        if(this.Dir != Dir){
-            AffineTransform tx = AffineTransform.getRotateInstance(Dir*90, X, Y);
-            TransOp = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-        }
+        this.Dir = Dir;
+//        if(this.Dir != Dir){
+//            AffineTransform tx = AffineTransform.getRotateInstance(Dir*90, X, Y);
+//            TransOp = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+//        }
     }
     public AffineTransformOp getTransOp(){return TransOp;}
     public BufferedImage getBuffMask(){return BuffMask;}
+    public int getDir(){return Dir;}
+    protected void setBuffMask(BufferedImage img){this.BuffMask = img;}
 }

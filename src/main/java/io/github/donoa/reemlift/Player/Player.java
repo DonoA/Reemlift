@@ -37,7 +37,9 @@ public class Player extends Sprite{
     private BufferedImage maskLeft;
     private BufferedImage maskDown;
     
-    private int speed = 3;
+    private final int ROF = 1000/5;
+    
+    private final int speed = 3;
     public Player(){
         super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.jpg");
         try {
@@ -52,16 +54,26 @@ public class Player extends Sprite{
         if(Dir.equals("w")){
             setY(getY()-speed);
             super.setMask(maskUp);
+            super.setDir(0);
+            super.setBuffMask(maskUp);
         }else if(Dir.equals("a")){
             setX(getX()-speed);
             super.setMask(maskLeft);
+            super.setDir(3);
+            super.setBuffMask(maskLeft);
         }else if(Dir.equals("s")){
             setY(getY()+speed);
             super.setMask(maskDown);
+            super.setDir(2);
+            super.setBuffMask(maskDown);
         }else if(Dir.equals("d")){
             setX(getX()+speed);
             super.setMask(maskRight);
+            super.setDir(1);
+            super.setBuffMask(maskRight);
         }
         Reemlift.gameFrame.repaint();
     }
+    
+    public int getROF(){return this.ROF;}
 }

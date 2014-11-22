@@ -27,6 +27,8 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
 import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Player.Shot;
+import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.TICKTIME;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
@@ -82,6 +84,9 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 e = ev;
                 isDown=true;
                 timer1.start();
+                timer2.stop();
+                timer3.stop();
+                timer4.stop();
             }
         };
     
@@ -91,8 +96,10 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                
                 timer2.start();
+                timer1.stop();
+                timer3.stop();
+                timer4.stop();
             }
         };
     
@@ -102,8 +109,10 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 p = DBmanager.player;
                 e = ev;
                 isDown=true;
-                
                 timer3.start();
+                timer2.stop();
+                timer1.stop();
+                timer4.stop();
             }
         };
     
@@ -114,6 +123,9 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 e = ev;
                 isDown=true;
                 timer4.start();
+                timer2.stop();
+                timer3.stop();
+                timer1.stop();
             }
         };
     /////Key
@@ -163,16 +175,31 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     ///Here
     
 //    private Timer FireCool = new Timer();
-    private boolean cooling = false;
+    private static boolean cooling = false;
+    
+    private static final Timer FireTimer = new Timer(DBmanager.player.getROF(), new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    cooling = false;
+                    FireTimer.stop();
+                }
+            });
     
     public static Action FIRETAP = new AbstractAction("FireTap"){
         @Override
         public void actionPerformed(ActionEvent ev){
-                System.out.println("Fire");
+                if(!cooling){
+                    int x = DBmanager.player.getX() + (DBmanager.player.getBuffMask().getWidth()/2);
+                    int y = DBmanager.player.getY() + (DBmanager.player.getBuffMask().getHeight()/2);
+                    Shot s = new Shot(x, y, DBmanager.player.getDir());
+                    DBmanager.MovingShots.add(s);
+                    DBmanager.ForRender.add(s);
+                    cooling = true;
+                    FireTimer.start();
+                    Reemlift.frame.repaint();
+                }
             }
-            
         };
-    
     
     @Override
     public void keyReleased(KeyEvent e) {

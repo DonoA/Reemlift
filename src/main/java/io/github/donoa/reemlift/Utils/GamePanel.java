@@ -27,6 +27,8 @@ import java.awt.event.KeyEvent;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import main.java.io.github.donoa.reemlift.Player.Player;
+import main.java.io.github.donoa.reemlift.Reemlift;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 
 /**
@@ -36,6 +38,9 @@ import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
 public class GamePanel extends JPanel{
     
     public GamePanel(){
+        
+        DBmanager.player = new Player();
+        
         getActionMap().put("MovePressW", ActionHandler.MOVEPRESSW);
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "MovePressW");
         getActionMap().put("MovePressA", ActionHandler.MOVEPRESSA);
@@ -61,13 +66,20 @@ public class GamePanel extends JPanel{
         setFocusable(true);
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
+        
+        Reemlift.MainLoop.start();
+        
     }
     
     @Override
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2d = (Graphics2D)g;
-        g2d.drawImage(DBmanager.player.getMask(), DBmanager.player.getX(), DBmanager.player.getY(), this);
+        if(!DBmanager.ForRender.isEmpty()){
+            for(Sprite s : DBmanager.ForRender){
+                g2d.drawImage(s.getMask(), s.getX(), s.getY(), this);
+            }
+        }
         
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
