@@ -20,6 +20,8 @@
 package main.java.io.github.donoa.reemlift.Utils.Level;
 
 import java.awt.Rectangle;
+import java.util.HashMap;
+import main.java.io.github.donoa.reemlift.NPC.npc;
 
 /**
  *
@@ -27,6 +29,8 @@ import java.awt.Rectangle;
  */
 public class LevelClass {
     private Block[][] Blocks;
+    
+    private HashMap<String, npc> npcs = new HashMap<>();
     
 //    public Level(int i){}
     public LevelClass(Block[][] blocks){

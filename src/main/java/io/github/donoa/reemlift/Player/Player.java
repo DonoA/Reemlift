@@ -46,8 +46,8 @@ public class Player extends Sprite{
     
     private final int speed = 3;
     public Player(){
-        super(40, 60, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png");
-        setHitBox(new Rectangle(40, 60, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        super(11, 11, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png");
+        setHitBox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         try {
             maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png"));
             maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Right.png"));

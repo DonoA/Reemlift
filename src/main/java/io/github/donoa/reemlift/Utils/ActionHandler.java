@@ -188,15 +188,28 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
         @Override
         public void actionPerformed(ActionEvent ev){
                 if(!cooling){
-                    int x = DBmanager.player.getX() + (DBmanager.player.getBuffMask().getWidth()/2);
-                    int y = DBmanager.player.getY() + (DBmanager.player.getBuffMask().getHeight()/2);
-                    Shot s = new Shot(x, y, DBmanager.player.getDir());
+                    Shot holder = new Shot(0, 0, DBmanager.player.getDir());
+                    Number x = DBmanager.player.getHitBox().getCenterX() - (holder.getHitBox().width/2);
+                    Number y = DBmanager.player.getHitBox().getCenterY() - (holder.getHitBox().height/2);
+                    Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.player.getDir());
                     DBmanager.MovingShots.add(s);
                     DBmanager.ForRender.add(s);
                     cooling = true;
                     FireTimer.start();
                     Reemlift.frame.repaint();
                 }
+            }
+        };
+    
+    
+    /////Interactions
+    ////Handler
+    ///Here
+    
+    public static Action INTERACT = new AbstractAction("Interact"){
+        @Override
+        public void actionPerformed(ActionEvent ev){
+                
             }
         };
     
