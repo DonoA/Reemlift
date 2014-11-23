@@ -76,7 +76,7 @@ public class LevelDBmanager {
             int Y = CurrLevel.getBlocks()[x].length;
             for(int y=0; y<Y; y++){
                 g2d.drawImage(CurrLevel.getBlocks()[x][y].getMask(), x*10, y*10, Reemlift.gameFrame);
-                g2d.draw(CurrLevel.getBlocks()[x][y].HitBox);
+//                g2d.draw(CurrLevel.getBlocks()[x][y].HitBox);
             }
         }
         return true;

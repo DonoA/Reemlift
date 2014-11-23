@@ -20,6 +20,7 @@
 package main.java.io.github.donoa.reemlift.Utils;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -46,6 +47,8 @@ public class Sprite {
     private AffineTransformOp TransOp;
     
     private BufferedImage BuffMask;
+    
+    private Rectangle Hitbox;
     
     public Sprite(int x, int y, String mask){
         this.X = x;
@@ -80,4 +83,6 @@ public class Sprite {
     public BufferedImage getBuffMask(){return BuffMask;}
     public int getDir(){return Dir;}
     protected void setBuffMask(BufferedImage img){this.BuffMask = img;}
+    public void setHitBox(Rectangle r){this.Hitbox = r;}
+    public Rectangle getHitBox(){return this.Hitbox;}
 }

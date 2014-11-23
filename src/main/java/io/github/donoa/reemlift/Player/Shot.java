@@ -19,7 +19,7 @@
 
 package main.java.io.github.donoa.reemlift.Player;
 
-import java.awt.image.BufferedImage;
+import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.FileSep;
-import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.Utils.Level.LevelDBmanager;
 import main.java.io.github.donoa.reemlift.Utils.Sprite;
 
 /**
@@ -46,42 +46,63 @@ public class Shot extends Sprite{
         this.Dir = Dir;
         if(this.Dir == 0){
             try {
+                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 1){
             try {
+                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Right.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 2){
             try {
+                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Down.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 3){
             try {
+                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Left.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        setHitBox(new Rectangle(getX(),getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
     }
     public void Update(){
         if(Dir == 0){
-            setY(getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, getHitBox().width, getHitBox().height))){
+                setY(getY()-speed);
+            }else{
+                dead = true;
+            }
         }else if(Dir == 3){
-            setX(getX()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), getHitBox().width, getHitBox().height))){
+                setX(getX()-speed);
+            }else{
+                dead = true;
+            }
         }else if(Dir == 2){
-            setY(getY()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, getHitBox().width, getHitBox().height))){
+                setY(getY()+speed);
+            }else{
+                dead = true;
+            }
         }else if(Dir == 1){
-            setX(getX()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), getHitBox().width, getHitBox().height))){
+                setX(getX()+speed);
+            }else{
+                dead = true;
+            }
         }
         if(getX()<0 || getY()<0 || getY()>Reemlift.frame.getHeight() || getX()>Reemlift.frame.getWidth()){
-            System.out.println("Removed Shot - " + DBmanager.MovingShots.size());
+//            System.out.println("Removed Shot - " + DBmanager.MovingShots.size());
             dead = true;
         }
     }

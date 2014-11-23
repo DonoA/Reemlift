@@ -40,12 +40,12 @@ public class LevelClass {
         Number dy1 = (HitBox.getMaxY()/10);
         Number dx2 = (HitBox.getMinX()/10);
         Number dy2 = (HitBox.getMinY()/10);
-        System.out.println(dx1.intValue() + ", " + dy1.intValue() + " : " + dx2.intValue() + ", " + dy2.intValue());
+//        System.out.println(dx1.intValue() + ", " + dy1.intValue() + " : " + dx2.intValue() + ", " + dy2.intValue());
         for(int x  = dx2.intValue(); x<= dx1.intValue(); x++){
             for(int y = dy2.intValue(); y<= dy1.intValue(); y++){
                 Block b = Blocks[x][y];
                 if(b.isSolid()){
-                    System.out.println("Hit" + x + " " + y);
+//                    System.out.println("Hit" + x + " " + y);
                     return true;
                 }
             }

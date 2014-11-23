@@ -28,6 +28,7 @@ import main.java.io.github.donoa.reemlift.Utils.GamePanel;
  */
 public class Reemlift {
     public static JFrame frame;
+    
     public static GamePanel gameFrame;
     
     public static String FileSep = System.getProperty("file.separator");
@@ -37,6 +38,9 @@ public class Reemlift {
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     
     public static final int TICKTIME = 25;
+    
+    public static final int HEIGHT = 408;
+    public static final int WIDTH = 506;
     
     public final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
                 @Override
@@ -88,7 +92,7 @@ public class Reemlift {
                     DBmanager.ForRender.add(DBmanager.player);
                     frame.add(gameFrame);
                     gameFrame.repaint();
-                    frame.setSize(500, 400);
+                    frame.setSize(WIDTH, HEIGHT);
                 }
             });
         btnp.add(Hbtn);
