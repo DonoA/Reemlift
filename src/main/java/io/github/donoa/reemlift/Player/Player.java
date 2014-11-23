@@ -42,7 +42,7 @@ public class Player extends Sprite{
     
     private final int ROF = 1000/5;
     
-    private Rectangle HitBox;
+    public Rectangle HitBox;
     
     private final int speed = 3;
     public Player(){
@@ -63,24 +63,28 @@ public class Player extends Sprite{
             super.setMask(maskUp);
             super.setDir(0);
             super.setBuffMask(maskUp);
+            HitBox = new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight());
         }else if(Dir.equals("a")){
             if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), HitBox.width, HitBox.height)))
                 setX(getX()-speed);
             super.setMask(maskLeft);
             super.setDir(3);
             super.setBuffMask(maskLeft);
+            HitBox = new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight());
         }else if(Dir.equals("s")){
             if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, HitBox.width, HitBox.height)))
                 setY(getY()+speed);
             super.setMask(maskDown);
             super.setDir(2);
             super.setBuffMask(maskDown);
+             HitBox = new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight());
         }else if(Dir.equals("d")){
             if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), HitBox.width, HitBox.height)))
                 setX(getX()+speed);
             super.setMask(maskRight);
             super.setDir(1);
             super.setBuffMask(maskRight);
+             HitBox = new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight());
         }
         Reemlift.gameFrame.repaint();
     }

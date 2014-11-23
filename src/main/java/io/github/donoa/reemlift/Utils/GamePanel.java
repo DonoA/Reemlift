@@ -89,6 +89,8 @@ public class GamePanel extends JPanel{
             }
         }
         
+        g2d.draw(DBmanager.player.HitBox);
+        
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
 //        repaint();
