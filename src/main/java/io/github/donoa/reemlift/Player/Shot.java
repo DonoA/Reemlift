@@ -102,7 +102,6 @@ public class Shot extends Sprite{
             }
         }
         if(getX()<0 || getY()<0 || getY()>Reemlift.frame.getHeight() || getX()>Reemlift.frame.getWidth()){
-//            System.out.println("Removed Shot - " + DBmanager.MovingShots.size());
             dead = true;
         }
     }

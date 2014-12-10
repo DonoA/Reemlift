@@ -26,11 +26,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
+import main.java.io.github.donoa.reemlift.NPC.npc;
 import main.java.io.github.donoa.reemlift.Player.Player;
 import main.java.io.github.donoa.reemlift.Player.Shot;
 import main.java.io.github.donoa.reemlift.Reemlift;
 import static main.java.io.github.donoa.reemlift.Reemlift.TICKTIME;
 import main.java.io.github.donoa.reemlift.SaveData.DBmanager;
+import main.java.io.github.donoa.reemlift.Utils.Level.LevelDBmanager;
 
 /**
  *
@@ -209,7 +211,11 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     public static Action INTERACT = new AbstractAction("Interact"){
         @Override
         public void actionPerformed(ActionEvent ev){
-                
+                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.player.getHitBox())!= null){
+                    //interact with npc
+                }else{
+                    //open inventory
+                }
             }
         };
     

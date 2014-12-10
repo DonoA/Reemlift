@@ -42,6 +42,8 @@ public class Player extends Sprite{
     
     private final int ROF = 1000/5;
     
+    private Inventory inventory;
+    
 //    public Rectangle HitBox;
     
     private final int speed = 3;

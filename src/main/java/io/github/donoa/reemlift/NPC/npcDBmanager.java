@@ -27,13 +27,18 @@ import java.util.HashMap;
  * @author Donovan
  */
 public class npcDBmanager {
-    public static HashMap<String, npc> npcs = new HashMap<>();
+    public HashMap<String, npc> npcs = new HashMap<>();
     
-    public static void LoadNpcs(){
+    public npcDBmanager(){
         
     }
     
-    public static npc inRange(Rectangle HitBox){
+    public void LoadNpcs(){
+        
+    }
+    
+    public npc inRange(Rectangle HitBox){
         return null;
     }
+    
 }
