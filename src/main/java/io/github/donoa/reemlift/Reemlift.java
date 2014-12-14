@@ -81,7 +81,6 @@ public class Reemlift {
     private static void MainMenu(){
         final JPanel btnp = new JPanel();
         btnp.setBackground(Color.BLUE);
-//        GridBagConstraints gbc = new GridBagConstraints();
 //        gbc.fill = GridBagConstraints.HORIZONTAL;
         JButton Hbtn = new JButton("New Game");
         Hbtn.addActionListener(new ActionListener() {
