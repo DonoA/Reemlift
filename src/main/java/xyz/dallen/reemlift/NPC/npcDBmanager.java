@@ -17,12 +17,28 @@
  * 
  */
 
-package main.java.io.github.donoa.reemlift.Player;
+package main.java.xyz.dallen.reemlift.NPC;
+
+import java.awt.Rectangle;
+import java.util.HashMap;
 
 /**
  *
  * @author Donovan
  */
-public class Inventory {
+public class npcDBmanager {
+    public HashMap<String, npc> npcs = new HashMap<>();
+    
+    public npcDBmanager(){
+        
+    }
+    
+    public void LoadNpcs(){
+        
+    }
+    
+    public npc inRange(Rectangle HitBox){
+        return null;
+    }
     
 }
