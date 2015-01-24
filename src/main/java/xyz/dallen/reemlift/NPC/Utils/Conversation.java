@@ -19,12 +19,10 @@
 package main.java.xyz.dallen.reemlift.NPC.Utils;
 
 /**
- *
+ * 
  * @author Donovan
  */
 public class Conversation {
-    
-    
     
     public Node[] nodes;
     
