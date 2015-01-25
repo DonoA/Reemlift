@@ -28,19 +28,19 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lombok.Getter;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.FileSep;
 
 /**
  *
  * @author Donovan
  */
 public class LevelDBmanager {
-    
+    @Getter
     public static LevelClass CurrLevel;
     
     public static void LoadLevel(String Level){
-        File save = new File(Reemlift.Source + "Resources" + FileSep + "Levels" + FileSep + Level + ".level");
+        File save = new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Levels" + Reemlift.getFileSep() + Level + ".level");
         try {
             Scanner in = new Scanner(save);
             int maxX = 0;
@@ -75,7 +75,7 @@ public class LevelDBmanager {
         for(int x=0; x<X; x++){
             int Y = CurrLevel.getBlocks()[x].length;
             for(int y=0; y<Y; y++){
-                g2d.drawImage(CurrLevel.getBlocks()[x][y].getMask(), x*10, y*10, Reemlift.gameFrame);
+                g2d.drawImage(CurrLevel.getBlocks()[x][y].getMask(), x*10, y*10, Reemlift.getGameFrame());
 //                g2d.draw(CurrLevel.getBlocks()[x][y].HitBox);
             }
         }

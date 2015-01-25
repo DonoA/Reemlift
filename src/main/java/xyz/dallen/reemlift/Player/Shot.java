@@ -25,8 +25,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import lombok.Getter;
+import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.FileSep;
 import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
@@ -39,36 +40,37 @@ public class Shot extends Sprite{
     
     private int speed = 5;
     
-    public boolean dead = false;
+    @Getter @Setter
+    private boolean dead = false;
     
     public Shot(int X, int Y, int Dir){
         super(X, Y, "");
         this.Dir = Dir;
         if(this.Dir == 0){
             try {
-                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.png")));
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Up.png")));
+                super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Up.png")));
+                super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Up.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 1){
             try {
-                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Right.png")));
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Right.png")));
+                super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Right.png")));
+                super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Right.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 2){
             try {
-                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Down.png")));
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Down.png")));
+                super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Down.png")));
+                super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Down.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }else if(this.Dir == 3){
             try {
-                super.setBuffMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" + FileSep + "Shot" + FileSep + "Shot-Left.png")));
-                super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Shot" + FileSep + "Shot-Left.png")));
+                super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Left.png")));
+                super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Left.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -101,7 +103,7 @@ public class Shot extends Sprite{
                 dead = true;
             }
         }
-        if(getX()<0 || getY()<0 || getY()>Reemlift.frame.getHeight() || getX()>Reemlift.frame.getWidth()){
+        if(getX()<0 || getY()<0 || getY()>Reemlift.getHEIGHT() || getX()>Reemlift.getWIDTH()){
             dead = true;
         }
     }

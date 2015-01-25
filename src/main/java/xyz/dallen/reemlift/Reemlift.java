@@ -28,27 +28,34 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @author Donovan
  */
 public class Reemlift {
-    public static ObjectMapper json = new ObjectMapper();
     
-    public static JFrame frame;
+    @Getter
+    private static ObjectMapper json = new ObjectMapper();
     
-    public static GamePanel gameFrame;
+    @Getter
+    private static JFrame frame;
     
-    public static String FileSep = System.getProperty("file.separator");
+    @Getter
+    private static GamePanel gameFrame;
     
-    public static String Source;
+    @Getter
+    private static String FileSep = System.getProperty("file.separator");
+    
+    @Getter
+    private static String Source;
     
     private static final ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();
     
-    public static final int TICKTIME = 25;
+    @Getter
+    private static final int TICKTIME = 25;
     
-    public static final int HEIGHT = 408;
-    public static final int WIDTH = 506;
+    @Getter
+    private static final int HEIGHT = 408;
+    @Getter
+    private static final int WIDTH = 506;
     
-    @Getter @Setter
-    private static final int Thing = 7;
-    
-    public final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
+    @Getter
+    private final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     Reemlift.MainTick.run();
@@ -61,7 +68,7 @@ public class Reemlift {
         public void run() {
             if(!DBmanager.MovingShots.isEmpty()){
                 for(Shot s:DBmanager.MovingShots){
-                    if(!s.dead){
+                    if(!s.isDead()){
                         s.Update();
                     }else{
                         DBmanager.ForRender.remove(s);

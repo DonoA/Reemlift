@@ -38,6 +38,7 @@ public class LevelClass {
         Blocks = blocks;
     }
     
+    
     public Block[][] getBlocks(){return Blocks;}
     
     public boolean HasHit(Rectangle HitBox){ //checks for block collisions in HitBox

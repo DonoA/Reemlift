@@ -1,4 +1,4 @@
-/*
+ /*
  * This file is part of Reemlift.
  * 
  * Reemlift is free software: you can redistribute it and/or modify
@@ -20,7 +20,6 @@
 package main.java.xyz.dallen.reemlift.Utils.Level;
 
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.FileSep;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
 /**
@@ -47,7 +46,7 @@ public enum Block_Old{
     private Block_Old(int id, boolean solid, String src) {
         this.id = id;
         this.solid = solid;
-        this.src = Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + src;
+        this.src = Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Block" + Reemlift.getFileSep() + src;
         
     }
     public void setLoc(int x, int y){

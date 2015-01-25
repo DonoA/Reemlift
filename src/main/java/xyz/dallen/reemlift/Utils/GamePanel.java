@@ -44,28 +44,28 @@ public class GamePanel extends JPanel{
         
         DBmanager.player = new Player();
         
-        getActionMap().put("MovePressW", ActionHandler.MOVEPRESSW);
+        getActionMap().put("MovePressW", ActionHandler.getMOVEPRESSW());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "MovePressW");
-        getActionMap().put("MovePressA", ActionHandler.MOVEPRESSA);
+        getActionMap().put("MovePressA", ActionHandler.getMOVEPRESSA());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, false), "MovePressA");
-        getActionMap().put("MovePressS", ActionHandler.MOVEPRESSS);
+        getActionMap().put("MovePressS", ActionHandler.getMOVEPRESSS());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, false), "MovePressS");
-        getActionMap().put("MovePressD", ActionHandler.MOVEPRESSD);
+        getActionMap().put("MovePressD", ActionHandler.getMOVEPRESSD());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, false), "MovePressD");
         
-        getActionMap().put("MoveReleaseW", ActionHandler.MOVERELEASEW);
+        getActionMap().put("MoveReleaseW", ActionHandler.getMOVERELEASEW());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, true), "MoveReleaseW");
-        getActionMap().put("MoveReleaseA", ActionHandler.MOVERELEASEA);
+        getActionMap().put("MoveReleaseA", ActionHandler.getMOVERELEASEA());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_A, 0, true), "MoveReleaseA");
-        getActionMap().put("MoveReleaseS", ActionHandler.MOVERELEASES);
+        getActionMap().put("MoveReleaseS", ActionHandler.getMOVERELEASES());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "MoveReleaseS");
-        getActionMap().put("MoveReleaseD", ActionHandler.MOVERELEASED);
+        getActionMap().put("MoveReleaseD", ActionHandler.getMOVERELEASED());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "MoveReleaseD");
         
-        getActionMap().put("FireTap", ActionHandler.FIRETAP);
+        getActionMap().put("FireTap", ActionHandler.getFIRETAP());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "FireTap");
         
-        getActionMap().put("Interact", ActionHandler.FIRETAP);
+        getActionMap().put("Interact", ActionHandler.getFIRETAP());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "Interact");
 
         addKeyListener(new ActionHandler());
@@ -73,7 +73,7 @@ public class GamePanel extends JPanel{
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
         
-        Reemlift.MainLoop.start();
+        Reemlift.getMainLoop().start();
         LevelDBmanager.LoadLevel("2");
     }
     

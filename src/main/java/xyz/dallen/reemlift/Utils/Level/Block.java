@@ -26,7 +26,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.FileSep;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
 /**
@@ -40,24 +39,24 @@ public class Block extends Sprite{
     protected Rectangle HitBox;
     
     public Block(int X, int Y, int ID){
-        super(X,Y, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Wall.jpg");
+        super(X,Y, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Block" + Reemlift.getFileSep() + "Wall.jpg");
         if(ID == 0){try {
             //Wall
-            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Wall.jpg")));
+            super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Block" + Reemlift.getFileSep() + "Wall.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }
             Solid = true;
         }else if(ID == 1){try {
             //Floor
-            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Floor.jpg")));
+            super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Block" + Reemlift.getFileSep() + "Floor.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }
             Solid = false;
         }else if(ID == 2){try {
             //Void
-            super.setMask(ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Block" + FileSep + "Void.jpg")));
+            super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Block" + Reemlift.getFileSep() + "Void.jpg")));
             } catch (IOException ex) {
                 Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
             }

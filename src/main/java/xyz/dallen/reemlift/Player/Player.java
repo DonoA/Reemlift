@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.FileSep;
 import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
@@ -48,13 +47,13 @@ public class Player extends Sprite{
     
     private final int speed = 3;
     public Player(){
-        super(11, 11, Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png");
+        super(11, 11, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png");
         setHitBox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         try {
-            maskUp = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Up.png"));
-            maskRight = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Right.png"));
-            maskDown = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Down.png"));
-            maskLeft = ImageIO.read(new File(Reemlift.Source + "Resources" + FileSep + "Sprites" + FileSep + "Player" +  FileSep + "Player-Left.png"));
+            maskUp = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png"));
+            maskRight = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Right.png"));
+            maskDown = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Down.png"));
+            maskLeft = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Left.png"));
         } catch (IOException e) {
         }
     }
@@ -88,7 +87,7 @@ public class Player extends Sprite{
             super.setBuffMask(maskRight);
             setHitBox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }
-        Reemlift.gameFrame.repaint();
+        Reemlift.getGameFrame().repaint();
     }
 //    
 //    private void reCalcHitBox(){

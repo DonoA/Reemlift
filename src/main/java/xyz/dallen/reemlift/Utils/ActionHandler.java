@@ -26,11 +26,11 @@ import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Timer;
+import lombok.Getter;
 import main.java.xyz.dallen.reemlift.NPC.npc;
 import main.java.xyz.dallen.reemlift.Player.Player;
 import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import static main.java.xyz.dallen.reemlift.Reemlift.TICKTIME;
 import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 
@@ -41,7 +41,7 @@ import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Player p;
     private static ActionEvent e;
-    private static final Timer timer1 = new Timer(TICKTIME, new ActionListener() {
+    private static final Timer timer1 = new Timer(Reemlift.getTICKTIME(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     if(isDown){
@@ -49,7 +49,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     }
                 }
             });
-    private static final Timer timer2 = new Timer(TICKTIME, new ActionListener() {
+    private static final Timer timer2 = new Timer(Reemlift.getTICKTIME(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     if(isDown){
@@ -57,7 +57,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     }
                 }
             });
-    private static final Timer timer3 = new Timer(TICKTIME, new ActionListener() {
+    private static final Timer timer3 = new Timer(Reemlift.getTICKTIME(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     if(isDown){
@@ -65,7 +65,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     }
                 }
             });
-    private static final Timer timer4 = new Timer(TICKTIME, new ActionListener() {
+    private static final Timer timer4 = new Timer(Reemlift.getTICKTIME(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     if(isDown){
@@ -79,7 +79,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     //////Press
     /////Events
     ////Here
-    public static Action MOVEPRESSW = new AbstractAction("MovePressW") {
+    @Getter
+    private static Action MOVEPRESSW = new AbstractAction("MovePressW") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 p = DBmanager.player;
@@ -91,8 +92,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 timer4.stop();
             }
         };
-    
-    public static Action MOVEPRESSA = new AbstractAction("MovePressA") {
+    @Getter
+    private static Action MOVEPRESSA = new AbstractAction("MovePressA") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 p = DBmanager.player;
@@ -104,8 +105,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 timer4.stop();
             }
         };
-    
-    public static Action MOVEPRESSS = new AbstractAction("MovePressS") {
+    @Getter
+    private static Action MOVEPRESSS = new AbstractAction("MovePressS") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 p = DBmanager.player;
@@ -117,8 +118,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 timer4.stop();
             }
         };
-    
-    public static Action MOVEPRESSD = new AbstractAction("MovePressD") {
+    @Getter
+    private static Action MOVEPRESSD = new AbstractAction("MovePressD") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 p = DBmanager.player;
@@ -133,7 +134,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     /////Key
     ////Release
     ///Here
-    public static Action MOVERELEASEW = new AbstractAction("MoveReleaseW") {
+    @Getter
+    private static Action MOVERELEASEW = new AbstractAction("MoveReleaseW") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
@@ -142,8 +144,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 }
             }
         };
-    
-    public static Action MOVERELEASEA = new AbstractAction("MoveReleaseA") {
+    @Getter
+    private static Action MOVERELEASEA = new AbstractAction("MoveReleaseA") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
@@ -152,8 +154,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 }
             }
         };
-    
-    public static Action MOVERELEASES = new AbstractAction("MoveReleaseS") {
+    @Getter
+    private static Action MOVERELEASES = new AbstractAction("MoveReleaseS") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
@@ -162,8 +164,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                 }
             }
         };
-    
-    public static Action MOVERELEASED = new AbstractAction("MoveReleaseD") {
+    @Getter
+    private static Action MOVERELEASED = new AbstractAction("MoveReleaseD") {
             @Override
             public void actionPerformed(ActionEvent ev) {
                 if(isDown){
@@ -185,8 +187,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     FireTimer.stop();
                 }
             });
-    
-    public static Action FIRETAP = new AbstractAction("FireTap"){
+    @Getter
+    private static Action FIRETAP = new AbstractAction("FireTap"){
         @Override
         public void actionPerformed(ActionEvent ev){
                 if(!cooling){
@@ -198,7 +200,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     DBmanager.ForRender.add(s);
                     cooling = true;
                     FireTimer.start();
-                    Reemlift.frame.repaint();
+                    Reemlift.getFrame().repaint();
                 }
             }
         };
@@ -207,8 +209,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     /////Interactions
     ////Handler
     ///Here
-    
-    public static Action INTERACT = new AbstractAction("Interact"){
+    @Getter
+    private static Action INTERACT = new AbstractAction("Interact"){
         @Override
         public void actionPerformed(ActionEvent ev){
                 if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.player.getHitBox())!= null){
