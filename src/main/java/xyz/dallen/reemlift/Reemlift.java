@@ -16,17 +16,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import main.java.xyz.dallen.reemlift.Player.Player;
+import lombok.Getter;
+import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
 import main.java.xyz.dallen.reemlift.Utils.GamePanel;
-//import main.java.org.*;
+import org.codehaus.jackson.map.ObjectMapper;
+
 /**
  *
  * @author Donovan
  */
 public class Reemlift {
-//    public static ObjectMapper parser;
+    public static ObjectMapper json = new ObjectMapper();
     
     public static JFrame frame;
     
@@ -42,6 +44,9 @@ public class Reemlift {
     
     public static final int HEIGHT = 408;
     public static final int WIDTH = 506;
+    
+    @Getter @Setter
+    private static final int Thing = 7;
     
     public final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
                 @Override
@@ -73,7 +78,7 @@ public class Reemlift {
         Source = ClassLoader.getSystemClassLoader().getResource(".").getPath();
         Source = Source.replace("/", FileSep);
         Source = Source.substring(1, Source.length());
-        Source += "main" + FileSep + "java" + FileSep + "io" + FileSep + "github" + FileSep + "donoa" + FileSep + "reemlift" + FileSep;
+        Source += "main" + FileSep + "java" + FileSep;
         frame = new JFrame("ReemLift");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
