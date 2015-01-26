@@ -63,7 +63,7 @@ public class LevelDBmanager {
                     blox[x][y] = new Block(x,y, Integer.parseInt(BlokIdArray.get(y).get(x)));
                 }
             }
-            CurrLevel = new LevelClass(blox);
+            CurrLevel = new LevelClass(blox, Level);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LevelDBmanager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

@@ -18,20 +18,55 @@
  */
 package main.java.xyz.dallen.reemlift.NPC.Utils;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import lombok.Getter;
+import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 /**
  * 
  * @author Donovan
  */
 public class Conversation {
+    @Setter
+    private int size; 
     
-    public Node[] nodes;
+    @Setter
+    private Node[] nodes = new Node[size];
     
-//    public Conversation()
+    @Getter @JsonIgnore
+    private int current = 0;
     
-    private class Node {
+    @Setter
+    private String end;
+    
+    public Conversation(){}
+    
+    public String getChat(String input){
+        String rtn = nodes[current].getOps().get(input);
+        int index = Arrays.asList(nodes[current].getOps().keySet().toArray()).indexOf(input);
+        if(nodes[current].getToAdv() == index){
+            if(nodes.length > current){
+                current++;
+                return rtn;
+            }else{
+                return end;
+            }
+        }else{
+            return rtn;
+        }
+    }
+    
+    public class Node {
+        
+        @Getter @Setter
+        private int toAdv;
+        
+        @Getter @Setter
+        private HashMap<String, String> ops = new HashMap<>();
         
         public Node(){}
         
     }
-    
 }

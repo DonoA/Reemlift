@@ -75,29 +75,29 @@ public class Shot extends Sprite{
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        setHitBox(new Rectangle(getX(),getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        setHitbox(new Rectangle(getX(),getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
     }
     public void Update(){
         if(Dir == 0){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, getHitBox().width, getHitBox().height))){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, getHitbox().width, getHitbox().height))){
                 setY(getY()-speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 3){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), getHitBox().width, getHitBox().height))){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), getHitbox().width, getHitbox().height))){
                 setX(getX()-speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 2){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, getHitBox().width, getHitBox().height))){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, getHitbox().width, getHitbox().height))){
                 setY(getY()+speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 1){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), getHitBox().width, getHitBox().height))){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), getHitbox().width, getHitbox().height))){
                 setX(getX()+speed);
             }else{
                 dead = true;

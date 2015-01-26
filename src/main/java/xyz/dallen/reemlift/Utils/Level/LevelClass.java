@@ -20,8 +20,7 @@
 package main.java.xyz.dallen.reemlift.Utils.Level;
 
 import java.awt.Rectangle;
-import java.util.HashMap;
-import main.java.xyz.dallen.reemlift.NPC.npc;
+import lombok.Getter;
 import main.java.xyz.dallen.reemlift.NPC.npcDBmanager;
 
 /**
@@ -29,15 +28,20 @@ import main.java.xyz.dallen.reemlift.NPC.npcDBmanager;
  * @author Donovan
  */
 public class LevelClass {
+    
     private Block[][] Blocks;
     
+    @Getter
     private npcDBmanager npcDB = new npcDBmanager();
     
-//    public Level(int i){}
-    public LevelClass(Block[][] blocks){
-        Blocks = blocks;
-    }
+    private String Name;
     
+//    public Level(int i){}
+    public LevelClass(Block[][] blocks, String name){
+        Blocks = blocks;
+        Name = name;
+        npcDB.LoadNpcs(name);
+    }
     
     public Block[][] getBlocks(){return Blocks;}
     
@@ -57,5 +61,4 @@ public class LevelClass {
         return false;
     }
     
-    public npcDBmanager getNpcDB(){return this.npcDB;}
 }

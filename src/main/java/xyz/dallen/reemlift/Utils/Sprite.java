@@ -21,34 +21,45 @@ package main.java.xyz.dallen.reemlift.Utils;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import lombok.Getter;
+import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
  *
  * @author Donovan
  */
 public class Sprite {
-    
+    @Getter @Setter @JsonIgnore
     private Image mask;
     
+    @Getter @Setter
     private int X;
     
+    @Getter @Setter
     private int Y;
     
+    @Getter @Setter
     private String src;
     
+    @Getter @Setter  @JsonIgnore
     private int Dir;
     
+    @Getter @Setter  @JsonIgnore
     private AffineTransformOp TransOp;
     
+    @Getter @Setter  @JsonIgnore
     private BufferedImage BuffMask;
     
+    @Getter @Setter  @JsonIgnore
     private Rectangle Hitbox;
+    
+    public Sprite(){}
     
     public Sprite(int x, int y, String mask){
         this.X = x;
@@ -61,28 +72,8 @@ public class Sprite {
         } catch (IOException e) {
         }
     }
-    public int getX(){return X;}
-    public int getY(){return Y;}
-    public void setY(int y){this.Y = y;}
-    public void setX(int x){this.X = x;}
-    public Image getMask(){return mask;}
     public void reloadMask(){try {
             this.mask = ImageIO.read(new File(src));
         } catch (IOException e) {
         }}
-    protected void setMask(Image mask){this.mask = mask;}
-    public void setSrc(String src){this.src = src;}
-    public void setDir(int Dir){
-        this.Dir = Dir;
-//        if(this.Dir != Dir){
-//            AffineTransform tx = AffineTransform.getRotateInstance(Dir*90, X, Y);
-//            TransOp = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-//        }
-    }
-    public AffineTransformOp getTransOp(){return TransOp;}
-    public BufferedImage getBuffMask(){return BuffMask;}
-    public int getDir(){return Dir;}
-    protected void setBuffMask(BufferedImage img){this.BuffMask = img;}
-    public void setHitBox(Rectangle r){this.Hitbox = r;}
-    public Rectangle getHitBox(){return this.Hitbox;}
 }

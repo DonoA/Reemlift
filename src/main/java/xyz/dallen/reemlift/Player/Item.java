@@ -16,28 +16,25 @@
  * 
  * 
  */
-
-package main.java.xyz.dallen.reemlift.NPC;
+package main.java.xyz.dallen.reemlift.Player;
 
 import lombok.Getter;
-import lombok.Setter;
-import main.java.xyz.dallen.reemlift.NPC.Utils.Conversation;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
 /**
  *
  * @author Donovan
  */
-public class npc extends Sprite{
-    @Setter @Getter
-    private String name;
+public class Item {
     
-    @Setter @Getter
-    private Conversation Convo;
+    @Getter
+    private Sprite Mask;
     
-    public npc(){super();}
+    @Getter
+    private ItemType Type;
     
-    public npc(int X, int Y, String MaskSrc){
-        super(X, Y, MaskSrc);
+    public Item(){
+        
     }
+    
 }

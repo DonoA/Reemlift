@@ -20,21 +20,39 @@
 package main.java.xyz.dallen.reemlift.NPC;
 
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import lombok.Getter;
+import main.java.xyz.dallen.reemlift.Reemlift;
 
 /**
  *
  * @author Donovan
  */
 public class npcDBmanager {
-    public HashMap<String, npc> npcs = new HashMap<>();
+    @Getter
+    private ArrayList<npc> npcs = new ArrayList<>();
     
     public npcDBmanager(){
-        
+
     }
     
-    public void LoadNpcs(){
-        
+    public void LoadNpcs(String lvl){
+        File source = new File(Reemlift.getSource() + "NPCdat" + Reemlift.getFileSep() + lvl + Reemlift.getFileSep());
+        for(File f : source.listFiles()){
+            try {
+                npc hold = Reemlift.getJson().readValue(f, npc.class);
+                hold.reloadMask();
+                npcs.add(hold);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(npcDBmanager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     public npc inRange(Rectangle HitBox){

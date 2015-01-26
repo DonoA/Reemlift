@@ -193,8 +193,8 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
         public void actionPerformed(ActionEvent ev){
                 if(!cooling){
                     Shot holder = new Shot(0, 0, DBmanager.player.getDir());
-                    Number x = DBmanager.player.getHitBox().getCenterX() - (holder.getHitBox().width/2);
-                    Number y = DBmanager.player.getHitBox().getCenterY() - (holder.getHitBox().height/2);
+                    Number x = DBmanager.player.getHitbox().getCenterX() - (holder.getHitbox().width/2);
+                    Number y = DBmanager.player.getHitbox().getCenterY() - (holder.getHitbox().height/2);
                     Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.player.getDir());
                     DBmanager.MovingShots.add(s);
                     DBmanager.ForRender.add(s);
@@ -213,7 +213,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action INTERACT = new AbstractAction("Interact"){
         @Override
         public void actionPerformed(ActionEvent ev){
-                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.player.getHitBox())!= null){
+                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.player.getHitbox())!= null){
                     //interact with npc
                 }else{
                     //open inventory

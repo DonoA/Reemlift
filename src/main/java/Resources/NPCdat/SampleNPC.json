@@ -1,3 +1,24 @@
 {
-    "name": "Donovan"
+    "name": "TestNpc",
+    "convo": {
+        "size": "10",
+        "nodes": {
+            "0": {
+                "toAdv": "Hello",
+                "ops": {
+                    "Hello": "Hello"
+                }
+            },
+            "1": {
+                "toAdv": "Hello",
+                "ops": {
+                    "Hello": "Hello"
+                }
+            }
+        }
+    },
+    
+    "X": "0",
+    "Y": "0",
+    "src": "null"
 }

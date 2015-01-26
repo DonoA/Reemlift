@@ -19,10 +19,22 @@
 
 package main.java.xyz.dallen.reemlift.Player;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Donovan
  */
 public class Inventory {
+    
+    private ArrayList<Item> Storage = new ArrayList<>();
+    
+    private Item[] Armor = new Item[4];
+    
+    private Item Attack;
+    
+    public Inventory(){
+        
+    }
     
 }
