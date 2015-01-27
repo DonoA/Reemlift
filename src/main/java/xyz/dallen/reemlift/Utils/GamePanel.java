@@ -42,7 +42,7 @@ public class GamePanel extends JPanel{
     
     public GamePanel(){
         
-        DBmanager.player = new Player();
+        DBmanager.setPlayer(new Player());
         
         getActionMap().put("MovePressW", ActionHandler.getMOVEPRESSW());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_W, 0, false), "MovePressW");
@@ -92,7 +92,7 @@ public class GamePanel extends JPanel{
             }
         }
         
-        g2d.draw(DBmanager.player.getHitbox());
+        g2d.draw(DBmanager.getPlayer().getHitbox());
         
         Toolkit.getDefaultToolkit().sync();
         g.dispose();

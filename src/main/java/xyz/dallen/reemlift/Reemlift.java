@@ -101,7 +101,7 @@ public class Reemlift {
                 public void actionPerformed(ActionEvent evt) {
                     frame.remove(btnp);
                     gameFrame = new GamePanel();
-                    DBmanager.ForRender.add(DBmanager.player);
+                    DBmanager.ForRender.add(DBmanager.getPlayer());
                     frame.add(gameFrame);
                     gameFrame.repaint();
                     frame.setSize(WIDTH, HEIGHT);

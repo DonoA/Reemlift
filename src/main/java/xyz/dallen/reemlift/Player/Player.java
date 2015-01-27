@@ -24,7 +24,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
+import lombok.Getter;
+import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Reemlift;
 import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
@@ -34,11 +37,13 @@ import main.java.xyz.dallen.reemlift.Utils.Sprite;
  * @author Donovan
  */
 public class Player extends Sprite{
+    @Setter
     private BufferedImage maskUp;
     private BufferedImage maskRight;
     private BufferedImage maskLeft;
     private BufferedImage maskDown;
     
+    @Getter
     private final int ROF = 1000/5;
     
     private Inventory inventory;
@@ -94,5 +99,4 @@ public class Player extends Sprite{
 //        HitBox = new Rectangle(new Dimension(BuffMask.getWidth(), BuffMask.getHeight()));
 //    }
 //    
-    public int getROF(){return this.ROF;}
 }

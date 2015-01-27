@@ -83,7 +83,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action MOVEPRESSW = new AbstractAction("MovePressW") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                p = DBmanager.player;
+                p = DBmanager.getPlayer();
                 e = ev;
                 isDown=true;
                 timer1.start();
@@ -96,7 +96,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action MOVEPRESSA = new AbstractAction("MovePressA") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                p = DBmanager.player;
+                p = DBmanager.getPlayer();
                 e = ev;
                 isDown=true;
                 timer2.start();
@@ -109,7 +109,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action MOVEPRESSS = new AbstractAction("MovePressS") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                p = DBmanager.player;
+                p = DBmanager.getPlayer();
                 e = ev;
                 isDown=true;
                 timer3.start();
@@ -122,7 +122,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action MOVEPRESSD = new AbstractAction("MovePressD") {
             @Override
             public void actionPerformed(ActionEvent ev) {
-                p = DBmanager.player;
+                p = DBmanager.getPlayer();
                 e = ev;
                 isDown=true;
                 timer4.start();
@@ -180,7 +180,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     
     private static boolean cooling = false;
     
-    private static final Timer FireTimer = new Timer(DBmanager.player.getROF(), new ActionListener() {
+    private static final Timer FireTimer = new Timer(DBmanager.getPlayer().getROF(), new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
                     cooling = false;
@@ -192,10 +192,10 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
         @Override
         public void actionPerformed(ActionEvent ev){
                 if(!cooling){
-                    Shot holder = new Shot(0, 0, DBmanager.player.getDir());
-                    Number x = DBmanager.player.getHitbox().getCenterX() - (holder.getHitbox().width/2);
-                    Number y = DBmanager.player.getHitbox().getCenterY() - (holder.getHitbox().height/2);
-                    Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.player.getDir());
+                    Shot holder = new Shot(0, 0, DBmanager.getPlayer().getDir());
+                    Number x = DBmanager.getPlayer().getHitbox().getCenterX() - (holder.getHitbox().width/2);
+                    Number y = DBmanager.getPlayer().getHitbox().getCenterY() - (holder.getHitbox().height/2);
+                    Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.getPlayer().getDir());
                     DBmanager.MovingShots.add(s);
                     DBmanager.ForRender.add(s);
                     cooling = true;
@@ -213,7 +213,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action INTERACT = new AbstractAction("Interact"){
         @Override
         public void actionPerformed(ActionEvent ev){
-                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.player.getHitbox())!= null){
+                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.getPlayer().getHitbox())!= null){
                     //interact with npc
                 }else{
                     //open inventory

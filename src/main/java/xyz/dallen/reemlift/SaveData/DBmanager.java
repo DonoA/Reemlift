@@ -20,6 +20,8 @@
 package main.java.xyz.dallen.reemlift.SaveData;
 
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Player.Player;
 import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
@@ -29,8 +31,8 @@ import main.java.xyz.dallen.reemlift.Utils.Sprite;
  * @author Donovan
  */
 public class DBmanager {
-    
-    public static Player player;
+    @Getter @Setter
+    private static Player player;
     
     public static ArrayList<Shot> MovingShots = new ArrayList<>();
     
