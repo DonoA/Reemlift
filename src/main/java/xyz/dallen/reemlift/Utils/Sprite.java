@@ -34,9 +34,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author Donovan
  */
-public class Sprite extends Location{
+public class Sprite{
     @Getter @Setter @JsonIgnore
     private Image mask;
+    
+    @Getter @Setter
+    private Location location;
     
     @Getter @Setter
     private String src;
@@ -50,12 +53,11 @@ public class Sprite extends Location{
     @Getter @Setter  @JsonIgnore
     private Rectangle Hitbox;
     
-    public Sprite(){super();}
+    public Sprite(){}
     
-    public Sprite(double x, double y, String mask){
-        super(x, y, 0);
+    public Sprite(int x, int y, String mask){
         this.src = mask;
-        
+        this.location = new Location(x, y, 0);
         try {
             this.mask = ImageIO.read(new File(src));
             this.BuffMask = ImageIO.read(new File(src));

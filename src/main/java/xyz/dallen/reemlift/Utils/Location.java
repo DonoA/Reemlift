@@ -42,8 +42,9 @@ public class Location {
         this.Dir = dir;
     }
     
-    public int dist(Location loc){
-        return Integer.parseInt(Math.sqrt((loc.getX()-getX())*(loc.getX()-getX()) + (loc.getY()-getY())*(loc.getY()-getY())));
+    public double dist(Location loc){
+        return Math.sqrt((loc.getX()-getX())*(loc.getX()-getX()) + (loc.getY()-getY())*(loc.getY()-getY()));
+        //int a = (int) Math.round(doubleVar);
     }
     
     public boolean inLine(Location loc){

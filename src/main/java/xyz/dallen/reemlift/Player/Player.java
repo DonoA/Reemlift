@@ -49,7 +49,7 @@ public class Player extends Sprite{
     
 //    public Rectangle HitBox;
     
-    private final double speed = 3;
+    private final int speed = 3;
     public Player(){
         super(11, 11, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png");
         setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
