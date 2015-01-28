@@ -16,12 +16,21 @@
  * 
  * 
  */
-package main.java.xyz.dallen.reemlift.Player;
+package main.java.xyz.dallen.reemlift.NPC;
+
+import main.java.xyz.dallen.reemlift.Utils.Events.Event;
+import main.java.xyz.dallen.reemlift.Utils.Events.ReemliftEvent;
 
 /**
  *
  * @author Donovan
  */
-public class ItemType { //enum
+public class npcEvents{
+    
+//    public class npcHitEvent extends Event implements ReemliftEvent{
+//        
+//        public npcHitEvent
+//        
+//    }
     
 }

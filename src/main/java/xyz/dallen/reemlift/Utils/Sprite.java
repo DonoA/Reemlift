@@ -34,21 +34,12 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author Donovan
  */
-public class Sprite {
+public class Sprite extends Location{
     @Getter @Setter @JsonIgnore
     private Image mask;
     
     @Getter @Setter
-    private int X;
-    
-    @Getter @Setter
-    private int Y;
-    
-    @Getter @Setter
     private String src;
-    
-    @Getter @Setter  @JsonIgnore
-    private int Dir;
     
     @Getter @Setter  @JsonIgnore
     private AffineTransformOp TransOp;
@@ -59,11 +50,10 @@ public class Sprite {
     @Getter @Setter  @JsonIgnore
     private Rectangle Hitbox;
     
-    public Sprite(){}
+    public Sprite(){super();}
     
-    public Sprite(int x, int y, String mask){
-        this.X = x;
-        this.Y = y;
+    public Sprite(double x, double y, String mask){
+        super(x, y, 0);
         this.src = mask;
         
         try {

@@ -55,7 +55,10 @@ public class npcDBmanager {
         }
     }
     
-    public npc inRange(Rectangle HitBox){
+    public npc inRange(Rectangle HitBox){ 
+        for(npc n1 : npcs){
+            
+        }
         return null;
     }
     

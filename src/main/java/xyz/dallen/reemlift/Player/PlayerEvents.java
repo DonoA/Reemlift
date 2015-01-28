@@ -18,23 +18,16 @@
  */
 package main.java.xyz.dallen.reemlift.Player;
 
-import lombok.Getter;
-import main.java.xyz.dallen.reemlift.Utils.Sprite;
+import java.awt.Event;
 
 /**
  *
  * @author Donovan
  */
-public class Item {
-    
-    @Getter
-    private Sprite Mask;
-    
-    @Getter
-    private ItemType Type;
-    
-    public Item(){
-        
+public class PlayerEvents extends Event{
+
+    public PlayerEvents(Object target, long when, int id, int x, int y, int key, int modifiers, Object arg) {
+        super(target, when, id, x, y, key, modifiers, arg);
     }
     
 }

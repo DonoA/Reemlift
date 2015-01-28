@@ -19,12 +19,11 @@
 
 package main.java.xyz.dallen.reemlift.Player;
 
-import java.awt.Dimension;
+import main.java.xyz.dallen.reemlift.Player.Inventory.Inventory;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,7 +49,7 @@ public class Player extends Sprite{
     
 //    public Rectangle HitBox;
     
-    private final int speed = 3;
+    private final double speed = 3;
     public Player(){
         super(11, 11, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png");
         setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
