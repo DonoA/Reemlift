@@ -75,35 +75,35 @@ public class Shot extends Sprite{
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        setHitbox(new Rectangle(getX(),getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        setHitbox(new Rectangle(getLocation().getX(),getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
     }
     public void Update(){
         if(Dir == 0){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, getHitbox().width, getHitbox().height))){
-                setY(getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()-speed, getHitbox().width, getHitbox().height))){
+                getLocation().setY(getLocation().getY()-speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 3){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), getHitbox().width, getHitbox().height))){
-                setX(getX()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()-speed, getLocation().getY(), getHitbox().width, getHitbox().height))){
+                getLocation().setX(getLocation().getX()-speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 2){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, getHitbox().width, getHitbox().height))){
-                setY(getY()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()+speed, getHitbox().width, getHitbox().height))){
+                getLocation().setY(getLocation().getY()+speed);
             }else{
                 dead = true;
             }
         }else if(Dir == 1){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), getHitbox().width, getHitbox().height))){
-                setX(getX()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()+speed, getLocation().getY(), getHitbox().width, getHitbox().height))){
+                getLocation().setX(getLocation().getX()+speed);
             }else{
                 dead = true;
             }
         }
-        if(getX()<0 || getY()<0 || getY()>Reemlift.getHEIGHT() || getX()>Reemlift.getWIDTH()){
+        if(getLocation().getX()<0 || getLocation().getY()<0 || getLocation().getY()>Reemlift.getHEIGHT() || getLocation().getX()>Reemlift.getWIDTH()){
             dead = true;
         }
     }

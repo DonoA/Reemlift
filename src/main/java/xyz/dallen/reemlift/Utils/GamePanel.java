@@ -88,7 +88,7 @@ public class GamePanel extends JPanel{
         
         if(!DBmanager.ForRender.isEmpty()){
             for(Sprite s : DBmanager.ForRender){
-                g2d.drawImage(s.getMask(), s.getX(), s.getY(), this);
+                g2d.drawImage(s.getMask(), s.getLocation().getX(), s.getLocation().getY(), this);
             }
         }
         

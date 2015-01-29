@@ -52,7 +52,7 @@ public class Player extends Sprite{
     private final int speed = 3;
     public Player(){
         super(11, 11, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png");
-        setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         try {
             maskUp = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png"));
             maskRight = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Right.png"));
@@ -63,33 +63,33 @@ public class Player extends Sprite{
     }
     public void Move(String Dir){
         if(Dir.equals("w")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()-speed, getHitbox().width, getHitbox().height)))
-                setY(getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()-speed, getHitbox().width, getHitbox().height)))
+                getLocation().setY(getLocation().getY()-speed);
             super.setMask(maskUp);
-            super.setDir(0);
+            super.getLocation().setDir(0);
             super.setBuffMask(maskUp);
-            setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("a")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()-speed, getY(), getHitbox().width, getHitbox().height)))
-                setX(getX()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()-speed, getLocation().getY(), getHitbox().width, getHitbox().height)))
+                getLocation().setX(getLocation().getX()-speed);
             super.setMask(maskLeft);
-            super.setDir(3);
+            super.getLocation().setDir(3);
             super.setBuffMask(maskLeft);
-            setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("s")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX(), getY()+speed, getHitbox().width, getHitbox().height)))
-                setY(getY()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()+speed, getHitbox().width, getHitbox().height)))
+                getLocation().setY(getLocation().getY()+speed);
             super.setMask(maskDown);
-            super.setDir(2);
+            super.getLocation().setDir(2);
             super.setBuffMask(maskDown);
-            setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("d")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getX()+speed, getY(), getHitbox().width, getHitbox().height)))
-                setX(getX()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()+speed, getLocation().getY(), getHitbox().width, getHitbox().height)))
+                getLocation().setX(getLocation().getX()+speed);
             super.setMask(maskRight);
-            super.setDir(1);
+            super.getLocation().setDir(1);
             super.setBuffMask(maskRight);
-            setHitbox(new Rectangle(getX(), getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }
         Reemlift.getGameFrame().repaint();
     }
