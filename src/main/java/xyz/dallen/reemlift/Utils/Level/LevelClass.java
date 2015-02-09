@@ -40,7 +40,7 @@ public class LevelClass {
     public LevelClass(Block[][] blocks, String name){
         Blocks = blocks;
         Name = name;
-        npcDB.LoadNpcs(name);
+//        npcDB.LoadNpcs(name);
     }
     
     public Block[][] getBlocks(){return Blocks;}
