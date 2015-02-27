@@ -80,7 +80,7 @@ public class GamePanel extends JPanel{
     @Override
     public void paint(Graphics g){
         super.paint(g);
-        Graphics2D g2d = (Graphics2D)g;
+        Graphics2D g2d = (Graphics2D) g;
         
         if(!LevelDBmanager.DrawLevel(g2d)){
             Logger.getLogger(LevelDBmanager.class.getName()).log(Level.SEVERE, null, "Err");
