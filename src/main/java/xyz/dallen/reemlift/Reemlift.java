@@ -23,6 +23,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import javax.swing.JButton;
@@ -34,6 +35,8 @@ import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
 import main.java.xyz.dallen.reemlift.Utils.GamePanel;
+import main.java.xyz.dallen.reemlift.Utils.LogUtil;
+import main.java.xyz.dallen.reemlift.Utils.Sprite;
 import org.codehaus.jackson.map.ObjectMapper;
 
 /**
@@ -68,6 +71,9 @@ public class Reemlift {
     private static final int WIDTH = 506;
     
     @Getter
+    private static boolean debug = true;
+    
+    @Getter
     private final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
@@ -84,8 +90,7 @@ public class Reemlift {
                     if(!s.isDead()){
                         s.Update();
                     }else{
-                        DBmanager.ForRender.remove(s);
-//                        DBmanager.MovingShots.remove(s);
+                        DBmanager.ForRender.get(1).remove(s);
                     }
                 }
             }
@@ -103,6 +108,10 @@ public class Reemlift {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setSize(300, 200);
+        LogUtil.setOutStream(System.out);
+        for(int i = 0; i <= 10; i++){
+            DBmanager.ForRender.put(i, new ArrayList<Sprite>());
+        }
     }
     private static void MainMenu(){
         final JPanel btnp = new JPanel();
@@ -114,7 +123,7 @@ public class Reemlift {
                 public void actionPerformed(ActionEvent evt) {
                     frame.remove(btnp);
                     gameFrame = new GamePanel();
-                    DBmanager.ForRender.add(DBmanager.getPlayer());
+                    DBmanager.ForRender.get(0).add(DBmanager.getPlayer());
                     frame.add(gameFrame);
                     gameFrame.repaint();
                     frame.setSize(WIDTH, HEIGHT);

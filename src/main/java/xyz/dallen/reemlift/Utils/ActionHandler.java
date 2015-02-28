@@ -173,38 +173,7 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
                     isDown = false;
                 }
             }
-        };
-    /////Fire
-    ////Tap
-    ///Here
-    
-    private static boolean cooling = false;
-    
-    private static final Timer FireTimer = new Timer(DBmanager.getPlayer().getROF(), new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent evt) {
-                    cooling = false;
-                    FireTimer.stop();
-                }
-            });
-    @Getter
-    private static Action FIRETAP = new AbstractAction("FireTap"){
-        @Override
-        public void actionPerformed(ActionEvent ev){
-                if(!cooling){
-                    Shot holder = new Shot(0, 0, DBmanager.getPlayer().getLocation().getDir());
-                    Number x = DBmanager.getPlayer().getHitbox().getCenterX() - (holder.getHitbox().width/2);
-                    Number y = DBmanager.getPlayer().getHitbox().getCenterY() - (holder.getHitbox().height/2);
-                    Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.getPlayer().getLocation().getDir());
-                    DBmanager.MovingShots.add(s);
-                    DBmanager.ForRender.add(s);
-                    cooling = true;
-                    FireTimer.start();
-                    Reemlift.getFrame().repaint();
-                }
-            }
-        };
-    
+        };    
     
     /////Interactions
     ////Handler
@@ -213,11 +182,11 @@ public class ActionHandler extends KeyAdapter/*implements ActionListener*/{
     private static Action INTERACT = new AbstractAction("Interact"){
         @Override
         public void actionPerformed(ActionEvent ev){
-                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.getPlayer().getLocation())!= null){
-                    //interact with npc
-                }else{
-                    //open inventory
-                }
+//                if(LevelDBmanager.CurrLevel.getNpcDB().inRange(DBmanager.getPlayer().getLocation())!= null){
+//                    //interact with npc
+//                }else{
+//                    //open inventory
+//                }
             }
         };
     

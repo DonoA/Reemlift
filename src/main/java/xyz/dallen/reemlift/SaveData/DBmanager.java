@@ -20,6 +20,7 @@
 package main.java.xyz.dallen.reemlift.SaveData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import lombok.Getter;
 import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Player.Player;
@@ -36,6 +37,6 @@ public class DBmanager {
     
     public static ArrayList<Shot> MovingShots = new ArrayList<>();
     
-    public static ArrayList<Sprite> ForRender = new ArrayList<>();
+    public static HashMap<Integer, ArrayList<Sprite>> ForRender = new HashMap<Integer, ArrayList<Sprite>>();
     
 }

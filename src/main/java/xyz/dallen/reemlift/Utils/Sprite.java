@@ -20,6 +20,7 @@
 package main.java.xyz.dallen.reemlift.Utils;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -39,7 +40,10 @@ public class Sprite{
     private Image mask;
     
     @Getter @Setter
-    private Location location;
+    private Point location;
+    
+    @Getter @Setter
+    private int Dir;
     
     @Getter @Setter
     private String src;
@@ -55,17 +59,30 @@ public class Sprite{
     
     public Sprite(){}
     
-    public Sprite(int x, int y, String mask){
-        this.src = mask;
-        this.location = new Location(x, y, 0);
+    public Sprite(int x, int y){
+        this.location = new Point(x, y);
+        this.Dir = 0;
         try {
             this.mask = ImageIO.read(new File(src));
             this.BuffMask = ImageIO.read(new File(src));
         } catch (IOException e) {
         }
     }
-    public void reloadMask(){try {
+    
+    public Sprite(int x, int y, String mask){
+        this.src = mask;
+        this.location = new Point(x, y);
+        this.Dir = 0;
+        try {
+            this.mask = ImageIO.read(new File(src));
+            this.BuffMask = ImageIO.read(new File(src));
+        } catch (IOException e) {
+        }
+    }
+    public void reloadMask(){
+        try {
             this.mask = ImageIO.read(new File(src));
         } catch (IOException e) {
-        }}
+        }
+    }
 }

@@ -61,12 +61,13 @@ public class GamePanel extends JPanel{
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_S, 0, true), "MoveReleaseS");
         getActionMap().put("MoveReleaseD", ActionHandler.getMOVERELEASED());
         getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_D, 0, true), "MoveReleaseD");
+
+        MouseHandle mh = new MouseHandle();
+        super.addMouseListener(mh);
+        super.addMouseMotionListener(mh);
         
-        getActionMap().put("FireTap", ActionHandler.getFIRETAP());
-        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0, false), "FireTap");
-        
-        getActionMap().put("Interact", ActionHandler.getFIRETAP());
-        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "Interact");
+//        getActionMap().put("Interact", ActionHandler.getFIRETAP());
+//        getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_E, 0, false), "Interact");
 
         addKeyListener(new ActionHandler());
         setFocusable(true);
@@ -87,8 +88,10 @@ public class GamePanel extends JPanel{
         }
         
         if(!DBmanager.ForRender.isEmpty()){
-            for(Sprite s : DBmanager.ForRender){
-                g2d.drawImage(s.getMask(), s.getLocation().getX(), s.getLocation().getY(), this);
+            for(Integer i : DBmanager.ForRender.keySet()){
+                for(Sprite s : DBmanager.ForRender.get(i)){
+                    g2d.drawImage(s.getMask(), s.getLocation().x, s.getLocation().y, this);
+                }
             }
         }
         

@@ -19,6 +19,7 @@
 
 package main.java.xyz.dallen.reemlift.Player;
 
+import java.awt.Point;
 import main.java.xyz.dallen.reemlift.Player.Inventory.Inventory;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -28,6 +29,7 @@ import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.Setter;
 import main.java.xyz.dallen.reemlift.Reemlift;
+import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
@@ -43,16 +45,23 @@ public class Player extends Sprite{
     private BufferedImage maskDown;
     
     @Getter
+    private PlayerLauncher currPL;
+    
+    @Getter
     private final int ROF = 1000/5;
     
     private Inventory inventory;
     
+    @Getter @Setter
+    private int AimDir = 0;
+    
 //    public Rectangle HitBox;
     
     private final int speed = 3;
+    
     public Player(){
         super(11, 11, Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png");
-        setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        setHitbox(new Rectangle(getLocation().x, getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         try {
             maskUp = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Up.png"));
             maskRight = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Right.png"));
@@ -60,37 +69,42 @@ public class Player extends Sprite{
             maskLeft = ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Player-Left.png"));
         } catch (IOException e) {
         }
+        currPL = new PlayerLauncher(super.getLocation(), "Launcher1");
+        DBmanager.ForRender.get(2).add(currPL);
     }
     public void Move(String Dir){
         if(Dir.equals("w")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()-speed, getHitbox().width, getHitbox().height)))
-                getLocation().setY(getLocation().getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x, getLocation().y-speed, getHitbox().width, getHitbox().height)))
+                getLocation().y = (getLocation().y-speed);
             super.setMask(maskUp);
-            super.getLocation().setDir(0);
+            super.setDir(0);
             super.setBuffMask(maskUp);
-            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().x, getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("a")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()-speed, getLocation().getY(), getHitbox().width, getHitbox().height)))
-                getLocation().setX(getLocation().getX()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x-speed, getLocation().y, getHitbox().width, getHitbox().height)))
+                getLocation().x = getLocation().x-speed;
             super.setMask(maskLeft);
-            super.getLocation().setDir(3);
+            super.setDir(270);
             super.setBuffMask(maskLeft);
-            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().x, getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("s")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()+speed, getHitbox().width, getHitbox().height)))
-                getLocation().setY(getLocation().getY()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x, getLocation().y+speed, getHitbox().width, getHitbox().height)))
+                getLocation().y = getLocation().y+speed;
             super.setMask(maskDown);
-            super.getLocation().setDir(2);
+            super.setDir(180);
             super.setBuffMask(maskDown);
-            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().x, getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }else if(Dir.equals("d")){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()+speed, getLocation().getY(), getHitbox().width, getHitbox().height)))
-                getLocation().setX(getLocation().getX()+speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x+speed, getLocation().y, getHitbox().width, getHitbox().height)))
+                getLocation().x = getLocation().x+speed;
             super.setMask(maskRight);
-            super.getLocation().setDir(1);
+            super.setDir(90);
             super.setBuffMask(maskRight);
-            setHitbox(new Rectangle(getLocation().getX(), getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+            setHitbox(new Rectangle(getLocation().x, getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
         }
+        Point PL = new Point((getLocation().x + (getBuffMask().getWidth()/2)),
+                getLocation().y + (getBuffMask().getHeight()/2) - (currPL.getBuffMask().getHeight()/2));
+        currPL.setLocation(PL);
         Reemlift.getGameFrame().repaint();
     }
 //    

@@ -53,21 +53,21 @@ public class Shot extends Sprite{
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(this.Dir == 1){
+        }else if(this.Dir == 90){
             try {
                 super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Right.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Right.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(this.Dir == 2){
+        }else if(this.Dir == 180){
             try {
                 super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Down.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Down.png")));
             } catch (IOException ex) {
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else if(this.Dir == 3){
+        }else if(this.Dir == 270){
             try {
                 super.setBuffMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" + Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Left.png")));
                 super.setMask(ImageIO.read(new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "Player" +  Reemlift.getFileSep() + "Shot" + Reemlift.getFileSep() + "Shot-Left.png")));
@@ -75,35 +75,35 @@ public class Shot extends Sprite{
                 Logger.getLogger(Shot.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        setHitbox(new Rectangle(getLocation().getX(),getLocation().getY(), super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
+        setHitbox(new Rectangle(getLocation().x,getLocation().y, super.getBuffMask().getWidth(), super.getBuffMask().getHeight()));
     }
     public void Update(){
         if(Dir == 0){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()-speed, getHitbox().width, getHitbox().height))){
-                getLocation().setY(getLocation().getY()-speed);
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x, getLocation().y-speed, getHitbox().width, getHitbox().height))){
+                getLocation().y = getLocation().y-speed;
             }else{
                 dead = true;
             }
-        }else if(Dir == 3){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()-speed, getLocation().getY(), getHitbox().width, getHitbox().height))){
-                getLocation().setX(getLocation().getX()-speed);
+        }else if(Dir == 270){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x-speed, getLocation().y, getHitbox().width, getHitbox().height))){
+                getLocation().x = getLocation().x-speed;
             }else{
                 dead = true;
             }
-        }else if(Dir == 2){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX(), getLocation().getY()+speed, getHitbox().width, getHitbox().height))){
-                getLocation().setY(getLocation().getY()+speed);
+        }else if(Dir == 180){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x, getLocation().y+speed, getHitbox().width, getHitbox().height))){
+                getLocation().y = getLocation().y+speed;
             }else{
                 dead = true;
             }
-        }else if(Dir == 1){
-            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().getX()+speed, getLocation().getY(), getHitbox().width, getHitbox().height))){
-                getLocation().setX(getLocation().getX()+speed);
+        }else if(Dir == 90){
+            if(!LevelDBmanager.CurrLevel.HasHit(new Rectangle(getLocation().x+speed, getLocation().y, getHitbox().width, getHitbox().height))){
+                getLocation().x = getLocation().x+speed;
             }else{
                 dead = true;
             }
         }
-        if(getLocation().getX()<0 || getLocation().getY()<0 || getLocation().getY()>Reemlift.getHEIGHT() || getLocation().getX()>Reemlift.getWIDTH()){
+        if(getLocation().x<0 || getLocation().y<0 || getLocation().y>Reemlift.getHEIGHT() || getLocation().x>Reemlift.getWIDTH()){
             dead = true;
         }
     }

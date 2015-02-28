@@ -19,16 +19,13 @@
 
 package main.java.xyz.dallen.reemlift.NPC;
 
-import java.awt.Rectangle;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
 import main.java.xyz.dallen.reemlift.Reemlift;
-import main.java.xyz.dallen.reemlift.Utils.Location;
 
 /**
  *
@@ -56,13 +53,13 @@ public class npcDBmanager {
         }
     }
     
-    public npc inRange(Location loc){ 
-        for(npc n1 : npcs){
-            if(loc.dist(n1.getLocation()) < 20 && loc.inLine(n1.getLocation())){
-                    return n1;
-            }
-        }
-        return null;
-    }
+//    public npc inRange(Point  loc){ 
+//        for(npc n1 : npcs){
+//            if(loc.dist(n1.getLocation()) < 20 && loc.inLine(n1.getLocation())){
+//                    return n1;
+//            }
+//        }
+//        return null;
+//    }
     
 }
