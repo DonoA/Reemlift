@@ -64,6 +64,7 @@ public class LevelDBmanager {
                 }
             }
             CurrLevel = new LevelClass(blox, Level);
+            CurrLevel.getNpcDB().LoadNpcs(Level);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LevelDBmanager.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }

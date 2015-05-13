@@ -22,13 +22,17 @@ package main.java.xyz.dallen.reemlift.Utils;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import lombok.Getter;
 import lombok.Setter;
+import main.java.xyz.dallen.reemlift.Reemlift;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -47,6 +51,12 @@ public class Sprite{
     
     @Getter @Setter
     private String src;
+    
+    @Getter @Setter
+    private AffineTransform trans;
+    
+    @Getter @Setter
+    private boolean Rotated;
     
     @Getter @Setter  @JsonIgnore
     private AffineTransformOp TransOp;
@@ -78,11 +88,26 @@ public class Sprite{
             this.BuffMask = ImageIO.read(new File(src));
         } catch (IOException e) {
         }
+        this.Rotated = false;
     }
     public void reloadMask(){
         try {
             this.mask = ImageIO.read(new File(src));
+            this.BuffMask = ImageIO.read(new File(src));
+            setHitbox(new Rectangle(getLocation().x, getLocation().y, getBuffMask().getWidth(), getBuffMask().getHeight()));
+            LogUtil.debug(src);
         } catch (IOException e) {
+            LogUtil.debug("Sprite Load Error");
         }
     }
+    
+//    @Override
+//    public String toString(){
+//        try {
+//            return Reemlift.getJson().writeValueAsString(this);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Sprite.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return "error";
+//    }
 }

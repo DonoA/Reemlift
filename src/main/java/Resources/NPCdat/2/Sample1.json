@@ -1,0 +1,27 @@
+{
+    "name": "TestNpc",
+    "convo": {
+        "size": "2",
+        "nodes": {
+            "0": {
+                "toAdv": "Hello",
+                "ops": {
+                    "Hello": "Hello"
+                }
+            },
+            "1": {
+                "toAdv": "Hello",
+                "ops": {
+                    "Hello": "Hello"
+                }
+            }
+        },
+        "end": "words"
+    },
+    
+    "location": {
+        "x": "100",
+        "y": "100"
+    },
+    "src": "Player-Left.png"
+}

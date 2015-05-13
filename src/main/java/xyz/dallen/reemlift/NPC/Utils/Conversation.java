@@ -29,16 +29,29 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  * @author Donovan
  */
 public class Conversation {
-    @Setter
+    
+    public static class Node {
+        
+        @Getter @Setter
+        private int toAdv;
+        
+        @Getter @Setter
+        private HashMap<String, String> ops = new HashMap<>();
+        
+        public Node(){}
+        
+    }
+    
+    @Getter @Setter
     private int size; 
     
-    @Setter
+    @Getter @Setter @JsonIgnore
     private Node[] nodes = new Node[size];
     
     @Getter @JsonIgnore
     private int current = 0;
     
-    @Setter
+    @Getter @Setter
     private String end;
     
     public Conversation(){}
@@ -58,15 +71,4 @@ public class Conversation {
         }
     }
     
-    public class Node {
-        
-        @Getter @Setter
-        private int toAdv;
-        
-        @Getter @Setter
-        private HashMap<String, String> ops = new HashMap<>();
-        
-        public Node(){}
-        
-    }
 }

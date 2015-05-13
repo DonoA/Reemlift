@@ -74,7 +74,7 @@ public class GamePanel extends JPanel{
         setBackground(Color.BLACK);
         setDoubleBuffered(true);
         
-        Reemlift.getMainLoop().start();
+        Reemlift.getMainTimer().start();
         LevelDBmanager.LoadLevel("2");
     }
     
@@ -90,7 +90,12 @@ public class GamePanel extends JPanel{
         if(!DBmanager.ForRender.isEmpty()){
             for(Integer i : DBmanager.ForRender.keySet()){
                 for(Sprite s : DBmanager.ForRender.get(i)){
-                    g2d.drawImage(s.getMask(), s.getLocation().x, s.getLocation().y, this);
+                    if(s.isRotated()){
+                        g2d.drawImage(s.getBuffMask(), s.getTrans(), null);
+                    }else{
+                        g2d.drawImage(s.getMask(), s.getLocation().x, s.getLocation().y, this);
+//                        LogUtil.debug(s.toString());
+                    }
                 }
             }
         }

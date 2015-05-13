@@ -35,20 +35,12 @@ public class LogUtil {
     }
     
     public static void info(Object msg){
-        try {
-            out.println(Reemlift.getJson().writeValueAsString(msg));
-        } catch (IOException ex) {
-            out.println("Error printing info");
-        }
+            out.println(msg.toString());
     }
     
     public static void debug(Object msg){
         if(Reemlift.isDebug()){
-            try {
-                out.println(StreamColor.CYAN + "[DEBUG] " + Reemlift.getJson().writeValueAsString(msg));
-            } catch (IOException ex) {
-                out.println("Error printing debug");
-            }
+                out.println(StreamColor.CYAN + "[DEBUG] " + msg.toString());
         }
     }
     

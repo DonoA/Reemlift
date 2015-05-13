@@ -36,6 +36,7 @@ import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
 import main.java.xyz.dallen.reemlift.Utils.GamePanel;
 import main.java.xyz.dallen.reemlift.Utils.LogUtil;
+import main.java.xyz.dallen.reemlift.Utils.MainLoop;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 import org.codehaus.jackson.map.ObjectMapper;
 
@@ -74,30 +75,15 @@ public class Reemlift {
     private static boolean debug = true;
     
     @Getter
-    private final static Timer MainLoop = new Timer(Reemlift.TICKTIME, new ActionListener() {
+    private static MainLoop MainLoop = new MainLoop();
+    
+    @Getter
+    private final static Timer MainTimer = new Timer(Reemlift.TICKTIME, new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {
-                    Reemlift.MainTick.run();
+                    MainLoop.run();
                 }
             });
-    
-    private final static Runnable MainTick = new Runnable(){
-
-        @Override
-        public void run() {
-            if(!DBmanager.MovingShots.isEmpty()){
-                for(Shot s:DBmanager.MovingShots){
-                    if(!s.isDead()){
-                        s.Update();
-                    }else{
-                        DBmanager.ForRender.get(1).remove(s);
-                    }
-                }
-            }
-            
-            frame.repaint();
-        }
-    };
     
     private static void Setup(){
         Source = ClassLoader.getSystemClassLoader().getResource(".").getPath();

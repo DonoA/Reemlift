@@ -22,6 +22,8 @@ package main.java.xyz.dallen.reemlift.NPC;
 import lombok.Getter;
 import lombok.Setter;
 import main.java.xyz.dallen.reemlift.NPC.Utils.Conversation;
+import main.java.xyz.dallen.reemlift.Player.Player;
+import main.java.xyz.dallen.reemlift.Utils.LogUtil;
 import main.java.xyz.dallen.reemlift.Utils.Sprite;
 
 /**
@@ -39,5 +41,10 @@ public class npc extends Sprite{
     
     public npc(int X, int Y, String MaskSrc){
         super(X, Y, MaskSrc);
+    }
+    
+    public boolean interact(Player p){
+        LogUtil.debug("Interacted!");
+        return true;
     }
 }

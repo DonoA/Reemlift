@@ -25,9 +25,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import javax.swing.Timer;
+import main.java.xyz.dallen.reemlift.NPC.npc;
+import main.java.xyz.dallen.reemlift.NPC.npcDBmanager;
 import main.java.xyz.dallen.reemlift.Player.Shot;
 import main.java.xyz.dallen.reemlift.Reemlift;
 import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
+import main.java.xyz.dallen.reemlift.Utils.Level.LevelDBmanager;
 
 /**
  *
@@ -62,25 +65,35 @@ public class MouseHandle implements MouseMotionListener, MouseListener{
         DBmanager.getPlayer().getCurrPL().updateAngle(
                 getAngle(e.getLocationOnScreen(),
                         new Point(DBmanager.getPlayer().getLocation().x, DBmanager.getPlayer().getLocation().y)));
-        LogUtil.debug("Mouse Move" + DBmanager.getPlayer().getCurrPL().getDir());
+        /*LogUtil.debug("Mouse Move " + getAngle(e.getLocationOnScreen(),
+                        new Point(DBmanager.getPlayer().getLocation().x, DBmanager.getPlayer().getLocation().y)));*/
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        Shot holder = new Shot(0, 0, DBmanager.getPlayer().getDir());
-        Number x = DBmanager.getPlayer().getHitbox().getCenterX() - (holder.getHitbox().width/2);
-        Number y = DBmanager.getPlayer().getHitbox().getCenterY() - (holder.getHitbox().height/2);
-        Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.getPlayer().getDir());
-        DBmanager.MovingShots.add(s);
-        DBmanager.ForRender.get(1).add(s);
-        Reemlift.getFrame().repaint();
-        isDown=true;
-        timer.start();
+        if(e.getButton() == MouseEvent.BUTTON1){
+            Shot holder = new Shot(0, 0, DBmanager.getPlayer().getDir());
+            Number x = DBmanager.getPlayer().getHitbox().getCenterX() - (holder.getHitbox().width/2);
+            Number y = DBmanager.getPlayer().getHitbox().getCenterY() - (holder.getHitbox().height/2);
+            Shot s = new Shot(x.intValue(), y.intValue(), DBmanager.getPlayer().getDir());
+            DBmanager.MovingShots.add(s);
+            DBmanager.ForRender.get(1).add(s);
+            Reemlift.getFrame().repaint();
+            isDown=true;
+            timer.start();
+        }else if(e.getButton() == MouseEvent.BUTTON3){
+            for(npc n : LevelDBmanager.CurrLevel.getNpcDB().getNpcs()){
+                Point p = e.getPoint();
+                if(n.getHitbox().contains(p)){
+                    n.interact(DBmanager.getPlayer());
+                }
+            }
+        }
     }
 
     @Override
@@ -101,11 +114,10 @@ public class MouseHandle implements MouseMotionListener, MouseListener{
         
     }
     
-    public int getAngle(Point target, Point start) {
-        float angle = (float) Math.toDegrees(Math.atan2(target.y - start.y, target.x - start.x));
-        if(angle < 0){
-            angle += 360;
-        }
-        return Math.round(angle);
+    public double getAngle(Point target, Point start) {
+        float deltaX = target.x - start.x;
+        float deltaY = target.y - start.y;
+//        (360 + Math.toDegrees(Math.atan2(deltaY, deltaX))) % 360;
+        return (360 + Math.toDegrees(Math.atan2(deltaY, deltaX))) / 360;
     }
 }

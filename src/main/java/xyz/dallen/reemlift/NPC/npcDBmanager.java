@@ -22,10 +22,13 @@ package main.java.xyz.dallen.reemlift.NPC;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
 import main.java.xyz.dallen.reemlift.Reemlift;
+import main.java.xyz.dallen.reemlift.SaveData.DBmanager;
+import main.java.xyz.dallen.reemlift.Utils.LogUtil;
 
 /**
  *
@@ -40,13 +43,15 @@ public class npcDBmanager {
     }
     
     public void LoadNpcs(String lvl){
-        File source = new File(Reemlift.getSource() + "NPCdat" + Reemlift.getFileSep() + lvl + Reemlift.getFileSep());
+        File source = new File(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "NPCdat" + Reemlift.getFileSep() + lvl + Reemlift.getFileSep());
         for(File f : source.listFiles()){
             try {
                 npc hold = Reemlift.getJson().readValue(f, npc.class);
+                hold.setSrc(Reemlift.getSource() + "Resources" + Reemlift.getFileSep() + "Sprites" + Reemlift.getFileSep() + "NPC" + Reemlift.getFileSep() + hold.getSrc());
                 hold.reloadMask();
                 npcs.add(hold);
-                
+                DBmanager.ForRender.get(1).add(hold);
+                LogUtil.debug("added npc " + hold.getName());
             } catch (IOException ex) {
                 Logger.getLogger(npcDBmanager.class.getName()).log(Level.SEVERE, null, ex);
             }
